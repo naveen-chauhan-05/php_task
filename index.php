@@ -37,8 +37,43 @@ input[type=password], input[type=email], input[type=submit]{
     </style>
 </head>
 <body>
+ 
+ <?php 
+ $loggin = false;
+ $showMessage = "";
+ if($_SERVER['REQUEST_METHOD']=="POST"){
+    include 'all_function.php';
+     $email = $_POST['email'];
+     $password = $_POST['password'];
+
+     $row = selectOneRow("user_signup", array('email'=>$email ));
+     print_r($row);
+     if($row){
+         if(password_verify($password, $row['password'])){
+            $loggin = true;
+            session_start();
+            $_SESSION['loggedIn']=true;
+            $_SESSION['email'] = $email;
+            header("location: category.php");
+
+         }
+         else{
+              $showMessage = "Sorry Wrong Password";
+         }
+
+     }
+     else{
+         $showMessage = "Sorry wrong email";
+     }
+     echo $showMessage;
+     
+ }
+ ?>
+
+
   <div class="container">
-      <form action="" method="post" >
+    
+      <form action="<?php echo $_SERVER['PHP_SELF'];?>" method="post" >
 
 <div class="formInner">
     
@@ -55,6 +90,7 @@ input[type=password], input[type=email], input[type=submit]{
 
 
       </form>
+      <h1><a href="signUp.php">Sign Up</a></h1>
   </div>
  
 </body>
