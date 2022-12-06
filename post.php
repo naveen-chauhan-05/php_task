@@ -64,20 +64,38 @@ height: 40px;
 </head>
 <body>
    <div class="container">
+      <?php
+      if($_SERVER['REQUEST_METHOD']=="POST"){
+          include 'all_function.php';
+      $title = $_POST['title'];
+      $description  = $_POST['description'];
+      $category = $_POST['category_game'];
       
+       var_dump($category);
+      $showMessage = insert("post_category", array('title'=> $title,'description' => $description, '	Game_Category' => $category));
+    
+      if($showMessage){
+          echo "inserted your data  ";
+      }
+      else{
+          echo "not inserted";
+      }
+      }
+      
+      ?>
 
-        <form action="" method="post" >
+        <form action="<?php echo $_SERVER['PHP_SELF'];?>" method="post" >
           
             <div class="formContainer">
                 <textarea name="textarea" placeholder="Post"></textarea>
             </div>
 
             <div class="formContainer2">
-            <input type="text" placeholder="Title">   
-            <textarea name="text" placeholder="Description"></textarea> 
+            <input type="text" placeholder="Title" name = "title">   
+            <textarea  placeholder="Description" name= "description"></textarea> 
             </div>
             <div class="formContainer3">
-                <input type="submit" value="Publish">
+            <input type="submit" value="Publish">
                 <div class="checkbox">
 
                         <div class="checkboxInner">
@@ -91,10 +109,19 @@ height: 40px;
 
                             </h3>
                             <hr>
-                            <h3>All Categories</h3>
-                            <h3><a href="">Most Used</a></h3>
-                            
+                            <h3><a href="post.php">ALl category</a></h3>
+                            <h3><a href="mostCategory.php">Most Used</a></h3>
+                            <div class="category">
+                               <input type="checkbox"   name = "category_game" value="1">Footbal<br>
+                               <input type="checkbox" name = "category_game" value ="2">Cricket<br>
+                               <input type="checkbox" name = "category_game1"value ="3">BaseBall<br>
+                            </div>
+                        
                         </div>
+                        <div>
+                                <a href="category.php">+add new Category</a>
+                            </div>
+                            
                 </div>
             </div>
                   </form>

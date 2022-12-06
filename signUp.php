@@ -4,56 +4,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="CSS/styles.css">
     <title>Sign Up</title>
 </head>
-<style>
-    body{
-        width: 100%;
-        height: 100%;
-    }
-    .container{
-        background-color: lightcoral;
-        border: 2px solid black;
-        width: 60%;
-        height: 50%;
-        margin: 5px auto;
-    }
-    input[type ="email"], input[type = "password"]{
-margin: 10px;
-        width: 90%;
-        height: 50px;
-    }
-    ::placeholder{
-        text-align: center;
-    }
-#submit{
-    font-weight: bold;
-    font-size: 15px;
-    margin: 10px 50px;
-    background-color: lightgreen;
-    border-radius: 10px;
-    padding: 20px 30px;
-}
-.getMessage{
-    
-    margin: 10px 12px;
-    width:90%;
-    text-align: center;
-    padding: 1px 0px;
-    color: white;
-}
-h3{
-    display: inline-block;
-    float: right;
-    font-weight: bold;
-    font-size: 20px;
-    margin: 10px 50px;
-    background-color: lightgreen;
-    border-radius: 10px;
-    padding: 20px 30px;
-    
-}
-</style>
+ 
 <body>
     <?php
     $email=$pass =$cpass =""; 
@@ -126,7 +80,7 @@ else{
     <input type="password" name="cpass" id="cpass" placeholder="Confirm Your Passsword">
 </div>
 <input type="submit" value="Submit" id="submit" name = "submit">
-<h3><a href="index.php">Log In! </a></h3>
+<h3 class = "login"><a href="index.php">Log In! </a></h3>
         </form>
     </div>
 </body>

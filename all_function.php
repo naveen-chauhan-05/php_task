@@ -83,6 +83,7 @@ return $tablefound;
 
  function selectOneRow($table, $array){
  $conn = db();
+ 
  $row_value = array();
 $table1 = checkTable($table);
 if($table1){
@@ -102,20 +103,11 @@ if($table1){
     }
    
 }
-else{
-    echo "This value not in the Table";
-}
     }
-    else{
-        echo "User  is not correct";
-    }
-}
-else{
-    echo "Table Not exist in Your Database";
-}
 
- }
  
+ }
+}
   
  function emptyData($table){
      $conn = db();
