@@ -1,0 +1,77 @@
+<?php
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $start_date = ($_POST["start_date"]);
+    $end_date = ($_POST["end_date"]);
+    $date_diff = abs((strtotime($end_date) - strtotime($start_date)));
+    $years = floor($date_diff / (365  60  60 * 24));
+    $months = floor(($date_diff - $years  365  60  60  24) / (30  60  60 * 24));
+    $days = floor(($date_diff - $years  365  60  60  24 - $months  30  60  60  24) / (60  60  24));
+}
+?>
+
+        <input type="text" class="result" name="diff" value="<?php
+                    if ((!empty($start_date)) && (!empty($end_date))) {
+                        if ($years == 0) {
+                            if ($months == 0) {
+                                if ($days == 0) {
+                                    echo "Both are same dates";
+                                } else {
+                                    echo "$days Days";
+                                }
+                            }
+                            else{
+                                echo "$months Month $days Days";
+                            }
+                        }
+                        elseif($years!=0){
+                          if($months == 0 ){
+                              if($days == 0){
+                                    echo "$years Years";
+                              }
+                              else{
+                                    echo "$years Year $days Days";
+                              }
+                          }
+                          else{
+                            echo "$years Year $months Month $days Days"; 
+                        }
+                        }
+                        else if($years!=0){
+                            if($month!=0){
+                                if($day ==0)
+                            }
+                        }
+                        if($month==0&& )
+<?php 
+                            $table = select("game_category");
+                             $i = 0;
+                            foreach ($table as $key => $value) {
+                                echo '<input type="checkbox" name ="category_game" value = "'.$i.'">'.$value['category_name'].'<br>';
+                                $i++;
+                            }
+                            
+                            ?>
+
+
+
+
+                            7/dec Notes
+
+------------------->> select game_category table from data base
+
+    <?php 
+                            $table = select("game_category");
+                             $i = 0;
+                            foreach ($table as $key => $value) {
+                                echo '<input type="checkbox" name ="category_game" value = "'.$i.'">'.$value['category_name'].'<br>';
+                                $i++;
+                            }
+                            
+                            ?>
+
+
+                            most value in table
+                            SELECT id, title, description, Game_Category FROM post_category WHERE Game_Category = (SELECT MAX(Game_Category) FROM post_category)
+
+
+SELECT Game_Category, COUNT(Game_Category) as most FROM post_category GROUP BY Game_Category HAVING COUNT(game_category) > 1 ORDER BY most DESC

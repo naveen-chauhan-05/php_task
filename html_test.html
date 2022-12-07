@@ -1,0 +1,55 @@
+<html>
+<head>
+</head>
+<style>
+    .clicker {
+        width: 10%;
+background-color:blue;
+outline:none;
+cursor:pointer;
+
+}
+
+.hiddendiv{
+display:none;
+height:200px;
+background-color: green;
+ 
+}
+.hiddendiv1{
+    display: block;
+    height: 200px;
+    background-color: yellow;
+}
+.clicker:focus + .hiddendiv{
+display:block;
+}
+ 
+
+</style>
+<script> 
+$(document).ready(function showdiv(){
+    ("#first").click(function(){
+        $('clicker').hide(1000);
+    })
+})
+
+</script>
+<body>
+
+<div>
+<h3 class="clicker" id="first" onclick="showDiv()" tabindex="1">Click1 me</h3> <h3 class="clicker" tabindex="1">Click Me</h3>
+
+<div class="hiddendiv" >
+    hello this is not php code
+</div>
+<div class="hiddendiv1" id="chatbutton">
+Hello this php courese
+
+</div>
+
+</div>
+
+</body>
+
+</html>

@@ -164,6 +164,7 @@ else{
 }
  return $showMessage;
  }
+
  
 //------------update Query ----------------------------
   
@@ -243,6 +244,7 @@ $temp="";
          $select .= " ".$main_value['tablename'].".";
          $select .= $value.", "; 
      }
+     
     }else{
  
         
@@ -254,8 +256,9 @@ $temp="";
             }
             else{$select .= " ".$main_value['tablename'].".";
                 $select .= $main_value['field']." ";
+                 
                
-            } $k++;
+            } $k++; 
            
         
     }
@@ -308,7 +311,7 @@ else{
      }
  }
  else{
-     echo "No"; 
+     echo "No! Not match your value"; 
  }
 return $value1;
 }
@@ -337,9 +340,39 @@ $array = array(
             'primary_key' => 'CID'
             )
 );
-
  
+ 
+function countRowCondition($table, $array){
+    $conn = db();
+    $count_value="";
+    $store_array = array();
+    $tablecheck = checkTable($table);
+    if($tablecheck){
+       $sql = "SELECT ";
+    
+       foreach ($array as $key => $value) {
+           $count_value=$value;
+             $sql .= $value.",";
+            
+       }
+       $sql .= " COUNT(".$count_value.") as most FROM ". $table. " GROUP BY ". $count_value. " HAVING COUNT(".$count_value.") > 1 ORDER BY most DESC";
+     
+       $query = mysqli_query($conn, $sql);
+        
+       
+       if($query){
+            while($row = mysqli_fetch_assoc($query)){
+                $store_array[] = $row;
+            }
+        
+       }
+    }
+    else{
+        echo "not check table";
+    }
+return $store_array;
 
+}
 
  
 ?>
