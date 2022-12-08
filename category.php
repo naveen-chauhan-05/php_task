@@ -70,6 +70,13 @@ textarea{
 </head>
 <body>
    <div class="container">
+      <?php 
+      
+      include 'all_function.php';
+      
+      ?>
+      
+      
       
 
         <form action="" method="post" >
@@ -88,6 +95,13 @@ textarea{
             </div>
             <div class="subcontainer1">
 <div class="Innerclass">
+<?php
+$val = $_GET['catid'];
+      $select_one_row = selectOneRow("game_category", array('cid'=>$val));
+      echo "<pre>";
+      print_r($select_one_row);
+      
+      ?>
 <div class="formInner">
     <input type="text" placeholder="Title" name = "title">required
 </div>
@@ -102,12 +116,22 @@ textarea{
 </div>
 </div>
 <div class="Innerclass2">
-    <div class="formInner"><input type="text" value="Cricket"></div>
-    <div class="formInner"> <input type="text" value="Footbal"></div>
-   <div class="formInner">   <input type="text" value="BaseBall"></div>
+ 
+<?php  
+
+$select = select("game_category");
+echo "<pre>";
+$i = 1;
+foreach ($select as $key => $value) {
+    echo "<a href='category.php?catid=".$i."'>".$value['category_name']."</a><br>";
+    $i++;
+}
+
+?>
  
 </div>
             </div>
+            
             
                   </form>
        

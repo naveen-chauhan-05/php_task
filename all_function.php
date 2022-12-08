@@ -108,7 +108,7 @@ if($table1){
  
  }
 }
-  
+   
  function emptyData($table){
      $conn = db();
      $table2 = checkTable($table);
@@ -248,7 +248,7 @@ $temp="";
     }else{
  
         
-    
+     
         
         if($k<count($main_value)-1){
             $select .= " ".$main_value['tablename'].".";
@@ -300,8 +300,8 @@ else{
 }
     $j++;
  }
+//  echo $select;
  
-
  $query = mysqli_query($conn, $select);
  
  $count = mysqli_num_rows($query);
@@ -340,7 +340,19 @@ $array = array(
             'primary_key' => 'CID'
             )
 );
- 
+//  $array1  = array(
+//         0=> array('tablename'=>'post_category',
+//                 'fields'=>array('title', 'description'),
+//                 'foreign' => array('Game_Category')),
+//         1=> array(
+//                  'tablename'=> 'game_category',
+//                 'primary_key' => 'cid', 
+//                 'field' => 'category_name'
+//     )
+//  );
+//  $value = joinTable($array1);
+//  echo "<pre>";
+//  print_r($value);
  
 function countRowCondition($table, $array){
     $conn = db();

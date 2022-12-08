@@ -90,14 +90,27 @@ height: 40px;
 outline:none;
 cursor:pointer;
 }
+ 
 .hiddendiv1{
-    background-color: yellow;
+    padding: 5px;
+    background-color: whitesmoke;
+    width: 80%;
+    border: 2px solid #b1dae1;
 }
 .hiddendiv{
- display: none;
+    padding: 5px;
+    background-color: #d3c7c7;
+    width: 80%;
+    border: 2px solid #b1dae1;
+}
 
- 
- 
+.hiddendiv{
+ display: none;
+}
+.empty_Message{
+    text-align: left;
+    margin:0px;
+    margin-left: 25px;
 }
 
 
@@ -105,26 +118,47 @@ cursor:pointer;
 </head>
 <body>
    <div class="container">
+
       <?php
+        $insert = false;
          include 'all_function.php';
          $showHeading ="";
+         $title =  $description = $category ="";
+         $title_error = $description_error = $category_error = "";
       if($_SERVER['REQUEST_METHOD']=="POST"){
-           
-      $title = $_POST['title'];
-      $description  = $_POST['description'];
-      $category = $_POST['category_game'];
+           if(!empty($_POST['title'])){
+            $title = $_POST['title'];
+           }
+           else{
+            $title_error = "Please Filled Title ";  
+           }
+           if(!empty($_POST['description'])){
+            $description  = $_POST['description'];
+           }
+           else{
+            $description_error = "Please Filled Description";  
+           }
+           if(!empty($_POST['category_game'])){
+            $category = $_POST['category_game'];
+           }
+           else{
+            $category_error = "Please Filled Category";  
+           }
+     
       
-        
-      $showMessage = insert("post_category", array('title'=> $title,'description' => $description, '	Game_Category' => $category));
-    
-      if($showMessage){
-         $showHeading ="Inserted your data";
+        if($title!="" && $description!="" && $category!=""){
+            $showMessage = insert("post_category", array('title'=> $title,'description' => $description, '	Game_Category' => $category));
+            
+            if($showMessage){
+                    $insert = true;
+                $showHeading ="Inserted your data";
+            }
+            else{
+                $showHeading= "Not inserted";
+            }
+            }
       }
-      else{
-          $showHeading= "Not inserted";
-      }
-      }
-
+   
       
       ?>
       <h1 class="mainHeading">POST</h1>
@@ -139,8 +173,10 @@ cursor:pointer;
             </div>
 
             <div class="formContainer2">
-            <input type="text" placeholder="Title" name = "title">   
-            <textarea  placeholder="Description" name= "description"></textarea> 
+            <input type="text" placeholder="Title" name = "title">  
+            <p class ="empty_Message"><?php echo $title_error;?></p> 
+            <textarea  placeholder="Description" name= "description"></textarea>
+            <p class ="empty_Message"><?php echo $description_error;?></p> 
             </div>
             <div class="formContainer3">
              <input type="submit" value="Publish">
@@ -181,9 +217,9 @@ cursor:pointer;
                                     
                                     $i++;
                                   
-                                }
+                                 }
                                 
-                            }
+                              }
                                  
                                  ?>
                                 </div>
@@ -194,12 +230,13 @@ cursor:pointer;
                                     $table = select("game_category");
                                     $i = 0;
                                     foreach ($table as $key => $value) {
-                                    echo '<input type="checkbox" name ="category_game" value = "'.$i.'">'.$value['category_name'].'<br>';
+                                    echo '<input type="checkbox" name ="category_game" value = "'.$value['cid'].'">'.$value['category_name'].'<br>';
                                     $i++;
                                      }
                                 
                                     ?>
                                 </div>
+                                <p class ="empty_Message"><?php echo $category_error;?></p>
                             </div>
                                 <div class="edit_page">
                                         <a href="category.php">+add new Category</a>

@@ -19,11 +19,17 @@
  <?php 
  $loggin = false;
  $showMessage = "";
- $password  = "";
- $passwordError = "";
+ $password  = $email = ""; 
+ $passwordError = $email_error="";
  if($_SERVER['REQUEST_METHOD']=="POST"){
     include 'all_function.php';
      $email = $_POST['email'];
+     if(!empty($_POST['email'])){
+        $email = $_POST['email'];
+        }
+        else{
+            $email_error = "Please filed Your Email";
+        }
      if(!empty($_POST['password'])){
      $password = $_POST['password'];
      }
@@ -39,6 +45,7 @@
                     session_start();
                     $_SESSION['loggedIn']=true;
                     $_SESSION['email'] = $email;
+                    
                     header("location: post.php");
 
                     }
@@ -65,6 +72,7 @@
 <div class="formInner_index">
     
     <input type="email" id="email" name="email" placeholder="Email">
+    <p class ="empty_Message"><?php echo $email_error;?></p>
 </div>
 
 <div class="formInner_index">
