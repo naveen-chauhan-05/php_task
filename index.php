@@ -7,7 +7,11 @@
     <link rel="stylesheet" href="CSS/styles.css">
     <title>Login</title>
     <style>
-
+.empty_Message{
+    text-align: left;
+    margin:0px;
+    margin-left: 25px;
+}
     </style>
 </head>
 <body>
@@ -15,32 +19,40 @@
  <?php 
  $loggin = false;
  $showMessage = "";
+ $password  = "";
+ $passwordError = "";
  if($_SERVER['REQUEST_METHOD']=="POST"){
     include 'all_function.php';
      $email = $_POST['email'];
+     if(!empty($_POST['password'])){
      $password = $_POST['password'];
-
-     $row = selectOneRow("user_signup", array('email'=>$email ));
-      
-     if($row){
-         if(password_verify($password, $row['password'])){
-            $loggin = true;
-            session_start();
-            $_SESSION['loggedIn']=true;
-            $_SESSION['email'] = $email;
-            header("location: post.php");
-
-         }
-         else{
-              $showMessage = "Sorry Wrong Password";
-         }
-
      }
      else{
-         $showMessage = "Sorry wrong email";
+         $passwordError = "Please filed Your password";
      }
+     if($password!=""){
+            $row = selectOneRow("user_signup", array('email'=>$email ));
+    
+            if($row){
+                if(password_verify($password, $row['password'])){
+                    $loggin = true;
+                    session_start();
+                    $_SESSION['loggedIn']=true;
+                    $_SESSION['email'] = $email;
+                    header("location: post.php");
+
+                    }
+                else{
+                        $showMessage = "Sorry Wrong Password";
+                     }
+
+            }
+            else{
+                $showMessage = "Sorry wrong email";
+            }
   
-     
+        }
+            
  }
  ?>
 
@@ -58,6 +70,7 @@
 <div class="formInner_index">
   
     <input type="Password" id="email" name="password" placeholder="password">
+    <p class ="empty_Message"><?php echo $passwordError;?></p>
 </div>
  <div class="formButton">
 <input type="submit" value="Submit" id = "submit">

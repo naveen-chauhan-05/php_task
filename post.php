@@ -90,9 +90,12 @@ height: 40px;
 outline:none;
 cursor:pointer;
 }
-
+.hiddendiv1{
+    background-color: yellow;
+}
 .hiddendiv{
  display: none;
+
  
  
 }
@@ -115,7 +118,7 @@ cursor:pointer;
       $showMessage = insert("post_category", array('title'=> $title,'description' => $description, '	Game_Category' => $category));
     
       if($showMessage){
-         $showHeading ="Inserted your data ";
+         $showHeading ="Inserted your data";
       }
       else{
           $showHeading= "Not inserted";
@@ -163,12 +166,24 @@ cursor:pointer;
                                  $array = countRowCondition("post_category", array("Game_Category"));
                                  $showdiv = false;
                                  $table = select("game_category");
-                                 $i = 0;
+                                
+                                  
                                  foreach ($array as $key1 => $value1) {
-                                     # code...
-                                 echo "<pre>";
-                                  print_r($value1);
+                                    
+                                    $i = 1;
+                                    $check = $value1['Game_Category'];
+                                     foreach ($table as $key => $value) {
+                                       if($check==$i)
+                                          {
+                                        echo '<input type="checkbox" name ="category_game" value = "'.$i.'">'.$value['category_name'].'<br>';
+                                    
+                                     }
+                                    
+                                    $i++;
+                                  
                                 }
+                                
+                            }
                                  
                                  ?>
                                 </div>
