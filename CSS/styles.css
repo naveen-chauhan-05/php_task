@@ -2,12 +2,14 @@ body{
     width: 100%;
     height: 100%;
 }
- .container{
-    background-color: lightcoral;
+ .container_signUp{
+    background-color:#c8dbda;
     border: 2px solid black;
     width: 60%;
     height: 50%;
     margin: 5px auto;
+    border-radius: 12px;
+    box-shadow: 2px grey;
 }
  
  
@@ -65,4 +67,92 @@ input[type ="email"], input[type = "password"]{
     text-align: center;
     width: 50%;
 }
-  
+
+
+/* category page */
+.container{
+ width: 100%;
+ border: 2px solid black;  
+ margin: 5px; 
+}
+.mainHeading{
+text-align:center;
+margin: 2px;
+}
+.container_category{
+    display: flex;
+ margin: 0px auto;
+ margin-bottom: 10px;
+width: 95%;
+ 
+ 
+}
+
+.subcontainer0{
+width: 90%;
+height: 200px; 
+border: 2px solid red;
+ margin: 10px;
+
+}   
+.subcontainer1{
+ margin: 10px;
+width: 80%;
+
+border: 2px solid green;
+height: 500px;
+display: flex;
+
+}
+.Innerclass{
+background-color: #dfd9d0;
+margin: 10px;
+width: 70%;
+}
+
+::placeholder {  
+text-align: center;
+font-size: 15px;
+}
+.formInner{
+margin: 10px;
+
+}
+input[type=text],input[type=submit]{
+        width: 70%;
+        height: 60px
+       
+    }
+
+        
+textarea{
+width: 70%;
+height: 100px;
+}
+select{
+width: 70%;
+height: 40px;
+ 
+
+}
+.Innerclass2{
+border: 2px solid gray;
+margin: 10px;
+width: 30%;
+}
+.update_button{
+width: 90%;
+padding: 5px;
+border: 2px solid black;
+margin: 2px auto;
+text-align:center;
+
+}
+.update_button a{
+text-decoration: none;
+font-size: 15px;
+padding: 7px;
+}
+option{
+    text-align: center;
+}

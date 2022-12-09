@@ -5,114 +5,126 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Category</title>
+    <link rel="stylesheet" href="CSS/styles.css">
 
 <style>
-
-    .container{
-    margin: 25px auto;
-    width: 100%;
-    height: 800px;
-    border: 2px solid black;
-}
-form{
-    display: flex;
-    
-}
-.subcontainer{
-    width: 30%;
-    height: 200px; 
-    border: 2px solid red;
-     margin: 10px;
-   
-}   
-.subcontainer1{
-     margin: 10px;
-width: 80%;
-border: 2px solid green;
-height: 500px;
-display: flex;
-
-}
-.Innerclass{
-  
-    margin: 10px;
-    width: 70%;
-}
-.Innerclass2{
-    border: 2px solid gray;
-    margin: 10px;
-    width: 30%;
-}
-::placeholder {  
-  text-align: center;
-  font-size: 15px;
-}
-.formInner{
-    margin: 10px;
-  
-}
-input[type=text],input[type=submit]{
-            width: 70%;
-            height: 60px
-           
-        }
-
-        .Innerclass2 input[type=text]{
-            width: 100%;
-            height: 60px
-           
-        }     
-textarea{
-    width: 70%;
-    height: 100px;
-}
+ 
 </style>
 </head>
 <body>
-   <div class="container">
+
+
+<div class="container">
+
+<h2 class = "mainHeading">CATEGORY ADD/EDIT</h2>
+    
+<div class="container_category">
+  
       <?php 
       
       include 'all_function.php';
+      $getId = false;
       
       ?>
       
       
       
-
+    <div class = "subcontainer">
         <form action="" method="post" >
-            <div class="subcontainer">
+                 <div class="subcontainer0">
 
-            <div class="formInner">
+                     <div class="formInner">
                 
-                <input type="text" id="title" name="title" placeholder="Post">
-            </div>
+                        <input type="text" id="title"  placeholder="Post">
+                     </div>
             
-            <div class="formInner">
+                    <div class="formInner">
               
-                 <textarea name="description" id="desc"  ="Categories"></textarea>
-            </div>
+                     <textarea id="desc"  placeholder="Categories"></textarea>
+                    </div>
             
-            </div>
+                </div>
+        </form>
+
+
+    </div>
+
             <div class="subcontainer1">
-<div class="Innerclass">
-<?php
+            <?php
+if($_GET['catid'] && $_GET['success']==true){
 $val = $_GET['catid'];
+$getId = true;
       $select_one_row = selectOneRow("game_category", array('cid'=>$val));
-      echo "<pre>";
-      print_r($select_one_row);
+     
+}
+   ?>   
+   
+            <?php
+      $game_category = $description = $parent_category = "";
+      $game_error = $descriptionError = $categoryError = "";
+      $show_Message = "";
+      if(isset($_POST['save'])){
+        
+        if($getId==true){
+            $game_category = $_POST['game'];
+            $description = $_POST['description'];
+            $parent_category = $_POST['parent_category'];
+            
+  $update = update1("game_category", array('parent_category' =>$parent_category, 'category_name'=> $game_category, 'game_description'=>$description), array('cid'=>$val));
+  var_dump($update);
+  if($update){
+      $show_Message = "Yes Edition successfully";
+
+  }
+  else{
+      $show_Message ="Sorry No Edition successfully";
+  }
+        }
+        else{
+           $game_category = $_POST['game'];
+            $description = $_POST['description'];
+            $parent_category = $_POST['parent_category'];
+             
+            $insert = insert("game_category", array('category_name'=>$game_category, 'game_description'=>$description, 'parent_category'=>$parent_category));
+            
+            if($insert){
+                $show_Message = "Yes this is Inserted";
+
+            }
+            else{
+                $show_Message = "This is not Inserted";
+            }
+        }
+      }
       
       ?>
+
+<div class="Innerclass">
+
+        <form action="<?php echo $_SERVER['PHP_SELF'];?>" method="post" >
 <div class="formInner">
-    <input type="text" placeholder="Title" name = "title">required
+    <input type="text" placeholder="Title" name = "game" value ="<?php echo $select_one_row['category_name']?>">required
 </div>
 <div class="formInner">
-    <textarea name="description" placeholder="Description" ></textarea>Not required
+    <textarea name="description" placeholder="Description" value =""><?php echo $select_one_row['game_description'];?></textarea>Not required
 </div>
 <div class="formInner">
-    <input type="text" placeholder="Present Categories" name="pcategories">Not Required
+ 
+    <select name="parent_category" id="">
+    <option value="">Parent Category</option>
+    <?php    $category = select('game_category');
+ foreach ($category as $key => $value) {
+  ?>
+  <option value="<?php echo $value['cid'];?>" <?php if($getId==true && $val==$value['cid']){
+      echo "selected='selected'";}
+      ?>><?php echo $value['category_name'];?></option><?php
+ }
+   
+    ?>
+    </select>
 </div>
 <div class="formInner">
-    <input type="submit" value="save">
+    <input type="submit" value="save" name = "save">
 </div>
 </div>
 <div class="Innerclass2">
@@ -121,10 +133,9 @@ $val = $_GET['catid'];
 
 $select = select("game_category");
 echo "<pre>";
-$i = 1;
 foreach ($select as $key => $value) {
-    echo "<a href='category.php?catid=".$i."'>".$value['category_name']."</a><br>";
-    $i++;
+    echo "<p class = 'update_button'><a href='category.php?catid=".$value['cid']."&&success=true'>".$value['category_name']."</a></p>";
+
 }
 
 ?>
@@ -136,5 +147,6 @@ foreach ($select as $key => $value) {
                   </form>
        
    </div>
+</div>
 </body>
 </html> 

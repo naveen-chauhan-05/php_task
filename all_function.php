@@ -164,63 +164,71 @@ else{
 }
  return $showMessage;
  }
+// --------------- call Insert Function ------------------
 
- 
+
+
+//  $insert = insert("game_category", array('category_name'=>'Volley-Ball', 'game_description'=>'Hello this is new game', 'parent_category'=>'1'));
+//  var_dump($insert);
+
+
+
+
+
+
 //------------update Query ----------------------------
   
-function update1($table_name, $myarray, $my_wheres) {
+function update1($table, $myarray, $my_wheres) {
     $conn = db();
     $table1 =checkTable($table);
     if($table1){
-    $sql = " UPDATE `".$table_name.
+    $sql = " UPDATE `".$table.
     "` SET ";
     $i = 0;
    
-    foreach($myarray as $key => $value) {
-        $sql .= $key.
-        " = '".$value."'";
-        
-        if ($i < count($myarray) - 1) {
-            $sql .= ", ";
-        }     
-        $i++;
-    }
-    if (count($my_wheres) > 0) {
-        $sql .=" WHERE ";
-        $i = 0;
-        foreach ($my_wheres as $key => $value) {
-
-   
+        foreach($myarray as $key => $value) {
             $sql .= $key.
-            " = ".$value;
+            " = '".$value."'";
+            
+            if ($i < count($myarray) - 1) {
+                $sql .= ", ";
+            }     
+            $i++;
+        }
+        if (count($my_wheres) > 0) {
+            $sql .=" WHERE ";
+            $i = 0;
+            foreach ($my_wheres as $key => $value) {
+
+                $sql .= $key.
+                " = ".$value;
+            
+                if ($i < count($my_wheres) - 1) {
+                    $sql .= " AND ";
+                }
+                $i++;      
+        }
+      
+        }
         
-            if ($i < count($my_wheres) - 1) {
-                $sql .= " AND ";
-            }
-            $i++;      
+        $run = mysqli_query($conn, $sql);      
+        return $run;
     }
-}
-else{
-    echo "Table not found your database";
-}
-    }
- echo $sql;
- echo "<br>";
-    $run = mysqli_query($conn, $sql);
-     
-    return $run;
+        else{
+            echo "Table not found your database";
+        }
 }
 
 
 // ---------- update function call -----------
-// $update = update1("Table123", array('Name'=>'Mera', 'age' =>21), array('id' => 8));
+// $update = update1("game_category", array('title'=>'Mera'), array('cid' => '1'));
 // var_dump($update);
 // if($update){
-//     echo "Your Columns are updated";
+//     echo "<br>Your Columns are updated";
 
 // }
 // else{
-//     echo "Your columns not updated";
+//     echo "<br>Your columns not updated";
 // }
 
 

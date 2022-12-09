@@ -69,7 +69,7 @@
         }
         }
     ?>
-    <div class="container">
+    <div class="container_signUp">
 <div class = "getMessage"><h2><?php echo $info?></h2></div>
         <form action="<?php echo $_SERVER['PHP_SELF'];?>" method ="POST">
             <hea</head>
