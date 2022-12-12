@@ -34,11 +34,18 @@ return $tablefound;
  
  }
  
- function select($table){
+ function select($table, $limit=NULL, $offset=null){
     $conn = db();
+    
    $table1 = checkTable($table);
    if($table1){
+       if($limt!=""&& $offset!=""){
+        $sql = "SELECT * FROM $table LIMIt".$limit."OFFSET".$offsest;
+       }
+       else{
        $sql = "SELECT * FROM $table";
+       }
+       echo $sql;
        $result = mysqli_query($conn, $sql);
        $count = mysqli_num_rows($result);
  
@@ -59,6 +66,7 @@ return $tablefound;
        else{
            echo "no data fetch form your table";
        }
+    
    }
    else{
        echo "Table not Found In your Database";
@@ -108,7 +116,10 @@ if($table1){
  
  }
 }
-   
+// //  call selectOneRow() function 
+// $select = selectOneRow('user_signup', array('email' =>'naveen@gmail.com'));
+// print_r($select);
+
  function emptyData($table){
      $conn = db();
      $table2 = checkTable($table);
@@ -390,9 +401,9 @@ function countRowCondition($table, $array){
     else{
         echo "not check table";
     }
+    
 return $store_array;
 
 }
-
  
 ?>

@@ -2,6 +2,7 @@ body{
     width: 100%;
     height: 100%;
 }
+/* Sign up page  */
  .container_signUp{
     background-color:#c8dbda;
     border: 2px solid black;
@@ -13,14 +14,7 @@ body{
 }
  
  
-#submit{
-font-weight: bold;
-font-size: 15px;
-margin: 10px 50px;
-background-color: lightgreen;
-border-radius: 10px;
-padding: 20px 30px;
-}
+
 .getMessage{
 
 margin: 10px 12px;
@@ -69,7 +63,7 @@ input[type ="email"], input[type = "password"]{
 }
 
 
-/* category page */
+/* / category page / */
 .container{
  width: 100%;
  border: 2px solid black;  
@@ -77,6 +71,7 @@ input[type ="email"], input[type = "password"]{
 }
 .mainHeading{
 text-align:center;
+color: red;
 margin: 2px;
 }
 .container_category{
@@ -87,14 +82,8 @@ width: 95%;
  
  
 }
-
-.subcontainer0{
-width: 90%;
-height: 200px; 
-border: 2px solid red;
- margin: 10px;
-
-}   
+ 
+    
 .subcontainer1{
  margin: 10px;
 width: 80%;
@@ -118,20 +107,23 @@ font-size: 15px;
 margin: 10px;
 
 }
-input[type=text],input[type=submit]{
+.formInner input[type=text]{
         width: 70%;
-        height: 60px
+        height: 60px;
+        margin-bottom : 0px;
        
     }
 
         
-textarea{
+.formInner textarea{
 width: 70%;
 height: 100px;
+margin-bottom: 0px;
 }
 select{
 width: 70%;
 height: 40px;
+margin-left: 10px;
  
 
 }
@@ -156,3 +148,122 @@ padding: 7px;
 option{
     text-align: center;
 }
+.para{
+    margin:0px;
+    margin-left: 10px;
+    color: darkred;
+}
+
+
+/* / Post page  css / */
+.post_container{
+   
+    width: 100%;
+    height: 600px;
+    /* / border: 2px solid black; / */
+}
+.mainHeading{
+    text-align: center;
+    margin: 2px;
+}
+.subContainer{
+    border: 2px solid black;
+    margin: 2px auto;
+    width:  90%;
+    height: 80%;
+}
+.subHeading{
+    margin: 2px;
+    text-align: center;
+}
+#form{
+    display: flex;
+    height: 100%;
+}
+.formContainer{
+     
+    width: 20%;
+    height: 70%;
+}
+textarea{
+    height: 90%;
+    margin: 10px;
+    width: 90%;
+    text-align: center;
+
+}
+.formContainer2{
+    
+     width: 30%;
+     height: 60%;
+ }
+ .formContainer3{
+     /* / border: 2px solid black; / */
+    width: 40%;
+     height: 60%;
+ }
+ 
+ input[type = "text"]{
+    margin: 10px;
+width: 90%;
+height: 40px;
+ }
+ 
+ ::placeholder{
+     text-align: center;
+ }
+ h3{
+     margin: 0px 10px;
+     display: inline-block;
+ }
+ .checkboxInner{
+     border: 2px solid black;
+ }
+
+ .category_content{
+     margin: 5px;
+ }
+ .edit_page{
+     margin: 5px;
+ }
+ .clicker {
+        width: 30%;
+ color: blue;
+outline:none;
+cursor:pointer;
+}
+ 
+.hiddendiv1{
+    padding: 5px;
+    background-color: whitesmoke;
+    width: 80%;
+    border: 2px solid #b1dae1;
+}
+.hiddendiv{
+    padding: 5px;
+    background-color: #d3c7c7;
+    width: 80%;
+    border: 2px solid #b1dae1;
+}
+
+.hiddendiv{
+ display: none;
+}
+.empty_Message{
+    text-align: left;
+    margin:0px;
+    margin-left: 25px;
+}
+
+/* button on of all page  */
+.submit{
+    font-weight: bold;
+    font-size: 18px;
+    margin: 10px 50px;
+    background-color: lightgreen;
+    border-radius: 10px;
+    padding: 15px 60px;
+    }
+    .button_secondary {
+         background-color: #e1d3e7;
+    }

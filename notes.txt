@@ -75,3 +75,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
 SELECT Game_Category, COUNT(Game_Category) as most FROM post_category GROUP BY Game_Category HAVING COUNT(game_category) > 1 ORDER BY most DESC
+
+
+12/Dec    List page
+       echo '<td><input type="checkbox" name ="" id = ""/>'.$value['title'].'</td>';
+           echo "<th>Author</th>
+              <th>Category</th>
+              <th>Date</th>
+          </tr>";
+
+

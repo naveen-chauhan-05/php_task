@@ -17,13 +17,14 @@
 <body>
  
  <?php 
+ 
  $loggin = false;
  $showMessage = "";
  $password  = $email = ""; 
  $passwordError = $email_error="";
  if($_SERVER['REQUEST_METHOD']=="POST"){
     include 'all_function.php';
-     $email = $_POST['email'];
+    
      if(!empty($_POST['email'])){
         $email = $_POST['email'];
         }
@@ -38,16 +39,15 @@
      }
      if($password!=""){
             $row = selectOneRow("user_signup", array('email'=>$email ));
-    
+ 
             if($row){
                 if(password_verify($password, $row['password'])){
+                    echo "hello";
                     $loggin = true;
                     session_start();
                     $_SESSION['loggedIn']=true;
-                    $_SESSION['email'] = $email;
-                    
+                    $_SESSION['email'] = $email;             
                     header("location: post.php");
-
                     }
                 else{
                         $showMessage = "Sorry Wrong Password";
@@ -81,7 +81,7 @@
     <p class ="empty_Message"><?php echo $passwordError;?></p>
 </div>
  <div class="formButton">
-<input type="submit" value="Submit" id = "submit">
+<input type="submit" value="Submit" class="submit" class="login">
  </div>
 
 

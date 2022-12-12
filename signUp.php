@@ -85,7 +85,7 @@
                 <input type="password" name="cpass" id="cpass" placeholder="Confirm Your Passsword">
                 <p class ="empty_Message"><?php echo $cpass_error;?></p>
             </div>
-            <input type="submit" value="Submit" id="submit" name = "submit">
+            <input type="submit" value="Submit" class="submit" name = "submit">
             <h3 class = "login"><a href="index.php">Log In! </a></h3>
         </form>
     </div>
