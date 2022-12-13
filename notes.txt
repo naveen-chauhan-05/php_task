@@ -84,4 +84,54 @@ SELECT Game_Category, COUNT(Game_Category) as most FROM post_category GROUP BY G
               <th>Date</th>
           </tr>";
 
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+     <meta charset="UTF-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>List All</title>
+     <style>
+.list_container{
+    border:2px solid black;
+}
+.table_container{
+    border: 2px solid red;
+    margin: 5px;
 
+}
+table{
+    border: 2px;
+    border-collapse: collapse;
+}
+ 
+ 
+    </style>
+ </head>
+ <body>
+<div class="list_container">
+    <div class="subcontainer">
+
+    </div>
+    <div class="table_container">
+        <table border="2">
+            <tr>
+               <th><input type="checkbox" name="" id="">Title</th>  
+                <th>Description</th>
+                <th>Category</th>
+                <th>Date</th>
+            </tr>
+            <tr>
+                <td><input type="checkbox" name="" id=""/>Naveen</td>
+                <td>This is match</td>
+                <td>match preview</td>
+                <td>12/jun/2022</td>
+            </tr>
+        </table>
+    </div>
+</div>
+  
+
+     
+ </body>
+ </html>

@@ -199,6 +199,8 @@ if($getId==true){
 <div class="formInner">
     <input type="submit" value="save" name = "save" class = "submit button_secondary">
 </div>
+<div><a href="list.php"> list of post</a></div>
+
 </div>
 <div class="Innerclass2">
  
@@ -220,6 +222,7 @@ foreach ($select as $key => $value) {
                   </form>
        
    </div>
+  
 </div>
 </body>
 </html> 

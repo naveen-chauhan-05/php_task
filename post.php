@@ -1,11 +1,5 @@
 <!DOCTYPE html>
-<?php
-session_start();
- if($_SESSION['email']==""){
-     header("Location:index.php");
- }
-else{
-?>
+ 
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -26,7 +20,9 @@ $showMessage = false;
    <div class="post_container">
 
       <?php
-      
+      session_start();
+      $session_email = $_SESSION['email'];
+      echo $session_email;
  
         $insert = false;
          include 'all_function.php';
@@ -197,4 +193,4 @@ showDiv.style.display = "none";
  
    </script>
 </body>
-</html> <?php }?>
+</html> 
