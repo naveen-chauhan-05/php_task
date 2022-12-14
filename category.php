@@ -198,8 +198,10 @@ if($getId==true){
 </div>
 <div class="formInner">
     <input type="submit" value="save" name = "save" class = "submit button_secondary">
+    <a href="list.php"> list of post</a>
+    <a href="signOut.php" class = "logOut">LogOut</a>
 </div>
-<div><a href="list.php"> list of post</a></div>
+ 
 
 </div>
 <div class="Innerclass2">

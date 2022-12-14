@@ -91,6 +91,7 @@ $showMessage = false;
             </div>
             <div class="formContainer3">
              <input type="submit" id = "submit" class = "button_secondary submit" value="Publish">
+             <span class= "logOut"><a href="signOut.php">Log Out</a></span>
                 <div class="checkbox">
 
                         <div class="checkboxInner">

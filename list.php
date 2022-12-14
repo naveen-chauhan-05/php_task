@@ -16,7 +16,7 @@
     border: 2px solid red;
     
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     flex-wrap:wrap;
 
 }
@@ -25,7 +25,7 @@ table{
     width: 100%;
    border: 2px dashed #c1c7c2;
    
-    align-self: end;
+    /* align-self: end; */
     border-collapse: collapse;
 }
   tr td{
@@ -53,6 +53,26 @@ table{
  ::placeholder{
      text-align: center;
  }
+ .logOutDiv{
+    margin: 5px;
+     /* background-color: #e5ede5; */
+     padding: 15px 5px;
+        
+     align-self: start;
+     width: 10%;
+
+ }
+ .logOut{
+        border: 2px solid black;
+        padding: 10px;
+        border-radius: 10px;
+    }
+    .bottomDiv{
+        display: flex;
+    justify-content: space-between;
+    width: 100%;
+    }
+
     </style>
  </head>
  <body>
@@ -153,7 +173,12 @@ echo "<option value = ''> All Category </a></option>";
            ?>
        
         </table>
+        <div class="bottomDiv">
+        <div class= "logOutDiv">
+        <a href="signOut.php" class="logOut">LogOut</a>
+        </div>
         <div class="footer">
+       
     <?php  
   
     echo "<span class = 'text'>".$numberRows." items </span>";
@@ -163,6 +188,8 @@ echo "<option value = ''> All Category </a></option>";
     ?>
     
     </div>
+        </div>
+  
     </div>
 
     

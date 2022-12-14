@@ -135,3 +135,6 @@ table{
      
  </body>
  </html>
+array(10=>)
+foreach
+input [type check value $value;];
