@@ -1,5 +1,6 @@
 <?php 
 session_start();
+if($_SESSION['loggedIn'] && $_SESSION['loggedIn']==true){
 echo "login by ".$_SESSION['email'];
 
 ?>
@@ -87,15 +88,9 @@ a{
                     else{
                         $description = $_POST['description'];
                     }
-                        
-                    if($_POST['parent_category']== ""){
-                        $_SESSION['error']['parent_category'] = "Game Parent- category Should not be empty";
-                    
-                    }
-                    else{
                         $parent_category = $_POST['parent_category'];
-                    } 
-                    if($game_category!="" && $description != "" && $parent_category != ""){
+                    
+                    if($game_category!="" && $description != "" ){
                                 $update = update1("game_category", array('parent_category' =>$parent_category, 'category_name'=> $game_category, 'game_description'=>$description), array('cid'=>$val));
                             
                                 if($update){
@@ -132,14 +127,11 @@ a{
                             $description = $_POST['description'];
                         }
                             
-                        if($_POST['parent_category']== ""){
-                            $_SESSION['error']['parent_category'] = "***Your parent-category is empty so You didn't";
                         
-                        }
-                        else{
+                        
                             $parent_category = $_POST['parent_category'];
-                        } 
-                        if($game_category!="" && $description != "" && $parent_category != ""){
+                        
+                        if($game_category!="" && $description != ""){
                                 $insert = insert("game_category", array('category_name'=>$game_category, 'game_description'=>$description, 'parent_category'=>$parent_category));
                                 
                                 if($insert){
@@ -199,7 +191,7 @@ a{
                         
                             ?>
                             </select>
-                            <?php if(isset($_SESSION['error']['parent_category']))echo "<p  class ='para'>".$_SESSION['error']['parent_category']."</p>";?>
+                             
                         </div>
                         <div class="formInner">
                             <input type="submit" value="save" name = "save" class = "submit button_secondary">
@@ -234,3 +226,7 @@ a{
 </div>
 </body>
 </html> 
+<?php }
+else{
+    header("Location: index.php");
+}

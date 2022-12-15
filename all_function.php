@@ -311,7 +311,7 @@ function update1($table, $myarray, $my_wheres) {
 
 
 // ---------- update function call -----------
-// $update = update1("game_category", array('title'=>'Mera'), array('cid' => '1'));
+// $update = update1("post_category", array('title'=>'Mera'), array('id' => '1'));
 // var_dump($update);
 // if($update){
 //     echo "<br>Your Columns are updated";

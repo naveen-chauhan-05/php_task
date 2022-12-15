@@ -1,5 +1,6 @@
 <?php 
 session_start();
+if($_SESSION['loggedIn'] && $_SESSION['loggedIn']==true){
 echo "login by ".$_SESSION['email'];
 
 ?>
@@ -13,10 +14,30 @@ echo "login by ".$_SESSION['email'];
      <style>
 .list_container{
     border:2px solid black;
-    width 90%;
+    width 100%;
+display: flex;
+}
+.menu{
+  /*border: 2px solid green;*/
+  align-self: start;
+    padding: 15px;
+    /* border: 2px solid green; */
+    width: 15%;
+    margin: 2px;
+
+}
+.all_page{
+    text-align:center;
+    border: 2px solid green;
+    margin: 10px;
+    font-size: 20px;
+}
+.field{
+  /*border: 2px solid red;*/
+  width: 80%;
 }
 .table_container{
-    width: 70%;
+    width: 100%;
     margin: 10px auto;
     border: 2px solid red;
     
@@ -39,6 +60,7 @@ table{
  .footer{
      
      margin: 5px;
+     margin-right: 10px;
      background-color: #e5ede5;
      padding: 15px 5px;
         
@@ -48,9 +70,9 @@ table{
  }
  .list_navbar{
      display: flex;
-     width: 70%;
+     width: 100%;
      margin: 2px auto;
-     padding: 5px;
+     padding: 5px 0px;
      border: 2px solid black;
      justify-content: space-evenly;
 
@@ -79,6 +101,9 @@ table{
     justify-content: space-between;
     width: 100%;
     }
+    td a{
+        text-decoration: none;
+    }
 
     </style>
  </head>
@@ -92,7 +117,26 @@ table{
  ?>
 
 <div class="list_container">
+  <div class = "menu">
+                <div class= "all_page">
+                <a href="post.php">Post</a>
+                </div>
+                <div class="all_page">
+                <a href="list.php">Show list</a>
+                </div>
+                <div class="all_page">
+                    <a href="category.php">Category</a>
+                </div>
+                <div class="all_page">
+                    <a href="signOut.php">LogOut</a>
+                </div>
+
+    </div>
+  <div class="field">
 <div class="list_navbar">
+<div class="primaryDive">
+<a href="delete">Delete</a>
+</div>
  <div class="firstDiv">
     <form action="" method ="get">
 <select name="select" id="">
@@ -207,11 +251,14 @@ echo "<option value = ''> All Category </a></option>";
         $select = select("post_category", $limit, $offset, array($val=>$temp));
         $numberRows = count_row("post_category", array($val=>$temp));
        }
+      
            echo "<tr>";
+
            foreach ($select as $key => $value) {
-           echo  '<td><input type="checkbox" name ="" id = ""/>'.$value['title'].'</td>';
+            $v1  = selectOneRow("game_category", array('cid'=>$value['Game_Category']));
+           echo  '<td><input type="checkbox" name ="" id = ""/><a href="edit.php?title='.$value['id'].'&&success=true">'.$value['title'].'</a></td>';
            echo "<td>".$value['post_user']."</td>";
-           echo  '<td>'.$value['description'].'</td>';
+           echo  '<td>'.$v1['category_name'].'</td>';
            echo  '<td>'.$value['timestamp'].'</td>';
            echo "</tr>";
            }
@@ -241,7 +288,7 @@ echo "<option value = ''> All Category </a></option>";
         </div>
   
     </div>
-
+</div>
     
 </div>
   
@@ -249,3 +296,8 @@ echo "<option value = ''> All Category </a></option>";
      
  </body>
  </html>
+ <?php }
+ else{
+     header("Location: index.php;");
+ }
+ ?>

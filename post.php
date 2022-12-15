@@ -1,5 +1,6 @@
 <?php
 session_start();
+if($_SESSION['loggedIn'] && $_SESSION['loggedIn']==true){
 echo "login by ".$_SESSION['email'];
 
 ?>
@@ -229,3 +230,8 @@ showDiv.style.display = "none";
    </script>
 </body>
 </html> 
+<?php }
+else{
+    header("Location: index.php");
+}
+?>
