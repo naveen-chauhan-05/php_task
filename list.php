@@ -1,3 +1,8 @@
+<?php 
+session_start();
+echo "login by ".$_SESSION['email'];
+
+?>
 <!DOCTYPE html>
  <html lang="en">
  <head>
@@ -38,7 +43,7 @@ table{
      padding: 15px 5px;
         
      align-self: end;
-     width: 30%;
+     
       
  }
  .list_navbar{
@@ -57,14 +62,16 @@ table{
     margin: 5px;
      /* background-color: #e5ede5; */
      padding: 15px 5px;
-        
+        font-size: 18px;
      align-self: start;
-     width: 10%;
+     /* border: 2px solid black; */
+     
 
  }
  .logOut{
         border: 2px solid black;
         padding: 10px;
+        text-decoration: none;
         border-radius: 10px;
     }
     .bottomDiv{
@@ -215,6 +222,10 @@ echo "<option value = ''> All Category </a></option>";
         <div class="bottomDiv">
         <div class= "logOutDiv">
         <a href="signOut.php" class="logOut">LogOut</a>
+        </div>
+        <div class="logOutDiv">
+
+        <a href="post.php" class="logOut">Add new Post</a>
         </div>
         <div class="footer">
        

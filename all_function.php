@@ -398,7 +398,7 @@ else{
 }
     $j++;
  }
-//  echo $select;
+//  echo $select;   
  
  $query = mysqli_query($conn, $select);
  
@@ -525,45 +525,71 @@ $start         = ($page - 1) * $limit;
 
 if($page>2)
 {
-echo  "<a href ='".$_SESVER['PHP_SELF']."?page=".($page-2)."'class = 'pagination'> <<</a>";
+    if (empty($_GET['filter']) && empty($_GET['search'])) {
+       
+        echo  "<a href ='".$_SESVER['PHP_SELF']."?page=".($page-2)."' class = 'pagination'> <<</a>";
+    }
+    else{
+        if($_GET['filter']){
+        echo "<a href='?select=".$_GET['select']."&Date1=".$_GET['Date1']."&Date2=".$_GET['Date2']."&filter=filter".$_SESVER['PHP_SELF']."&page=".($page-2)."' class = 'pagination'> <<</a>";
+        }
+        else{
+            echo "<a href='?value=".$_GET['value']."&search=search".$_SESVER['PHP_SELF']."&page=".($page-2)."' class = 'pagination'> <<</a>";
+        }
+    }
   
 }
 if($page>1)
 {
-    if (empty($_GET['filter']) ) {
+    if (empty($_GET['filter']) && empty($_GET['search'])) {
        
         echo  "<a href ='".$_SESVER['PHP_SELF']."?page=".($page-1)."' class = 'pagination'> <</a>";
     }
     else{
-        
-        echo "<a href='?select=".$_GET['select']."&Date1=".$_GET['date1']."&Date2=".$_GET['date2']."&filter=filter".$_SESVER['PHP_SELF']."&page=".($page-1)."' class = 'pagination'> <</a>";
+        if($_GET['filter']){
+        echo "<a href='?select=".$_GET['select']."&Date1=".$_GET['Date1']."&Date2=".$_GET['Date2']."&filter=filter".$_SESVER['PHP_SELF']."&page=".($page-1)."' class = 'pagination'> <</a>";
+        }
+        else{
+            echo "<a href='?value=".$_GET['value']."&search=search".$_SESVER['PHP_SELF']."&page=".($page-1)."' class = 'pagination'> <</a>";
+        }
     }
 }
 echo "<span class = 'text'>".$page." of ". $allPages."</span>";
 if($allPages>$page){
-    if (empty($_GET['filter'])) {
-        
+    if (empty($_GET['filter']) && empty($_GET['search'])) {
+         
   echo "<a href='".$_SESVER['PHP_SELF']."?page=".($page+1)."' class = 'pagination'> ></a>";
 }
-else if(empty($_GET['search'])){
-    echo "<a href='".$_SESVER['PHP_SELF']."?page=".($page+1)."' class = 'pagination'> ></a>"; 
-    
-}
+ 
     else{
-     if($_GET['filter']){
-    echo "<a href='?select=".$_GET['select']."&Date1=".$_GET['date1']."&Date2=".$_GET['date2']."&filter=filter".$_SESVER['PHP_SELF']."&page=".($page+1)."' class = 'pagination'> ></a>";
-     }
-     else{
-        echo "<a href='?value=".$_GET['value']."&search=search".$_SESVER['PHP_SELF']."&page=".($page+1)."' class = 'pagination'> ></a>";
-     }
+        if($_GET['filter']){
+            echo $_GET['date1'];
+                echo "<a href='?select=".$_GET['select']."&Date1=".$_GET['Date1']."&Date2=".$_GET['Date2']."&filter=filter".$_SESVER['PHP_SELF']."&page=".($page+1)."' class = 'pagination'> ></a>";
+                
+            }
+            else{
+                echo "<a href='?value=".$_GET['value']."&search=search".$_SESVER['PHP_SELF']."&page=".($page+1)."' class = 'pagination'> ></a>";
+            }
 }
 }
 if($allPages>$page && $page != $allPages-1 && $page !=$allPages){
-  echo "<a href='".$_SESVER['PHP_SELF']."?page=".($page+2)."' class = 'pagination'> >></a>";
-}
-
+    if (empty($_GET['filter']) && empty($_GET['search'])) {
+       
+        echo  "<a href ='".$_SESVER['PHP_SELF']."?page=".($page+2)."' class = 'pagination'> >></a>";
+    }
+    else{
+        if($_GET['filter']){
+        echo "<a href='?select=".$_GET['select']."&Date1=".$_GET['Date1']."&Date2=".$_GET['Date2']."&filter=filter".$_SESVER['PHP_SELF']."&page=".($page+2)."' class = 'pagination'> >></a>";
+        }
+        else{
+            echo "<a href='?value=".$_GET['value']."&search=search".$_SESVER['PHP_SELF']."&page=".($page+2)."' class = 'pagination'> >></a>";
+        }
+    }
+  
 }
 echo '</body>
 </html>';
+}
+
  
 ?>

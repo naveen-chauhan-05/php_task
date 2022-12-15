@@ -1,12 +1,17 @@
-<!DOCTYPE html>
- 
+<?php
+session_start();
+echo "login by ".$_SESSION['email'];
+
+?>
+
+<!DOCTYPE html> 
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="CSS/styles12.css">
-    <title>Category</title>
+    <title>Post</title>
 <?php
 $showMessage = false;
 
@@ -23,10 +28,8 @@ $showMessage = false;
 a{
     text-decoration: none;
 }
-.formContainer3{
-  width: 49%;
-  /*border: 4px solid red;*/
-}
+ 
+
 </style>
 </head>
 <body>
@@ -76,18 +79,37 @@ a{
    
       
       ?>
-      <h1 class="mainHeading">POST</h1>
+     
     <div class="subContainer">
-       <h2 class="subHeading">
+    <h1 class="mainHeading">POST</h1>
+      
+    
+          
+            <div class= "post_form">
+        
+    <div class = "subcontainer_category">
+                <div class= "all_page">
+                <a href="post.php">Post</a>
+                </div>
+                <div class="all_page">
+                <a href="list.php">Show list</a>
+                </div>
+                <div class="all_page">
+                    <a href="category.php">Category</a>
+                </div>
+                <div class="all_page">
+                    <a href="signOut.php">LogOut</a>
+                </div>
+
+    </div>
+<div class="subcontainer_post">
+<h2 class="subHeading">
            <?php echo $showHeading;?>
        </h2>
-        <form action="<?php echo $_SERVER['PHP_SELF'];?>" method="post" id = "form">
-          
-            <div class="formContainer">
-                <textarea name="textarea" placeholder="Post"></textarea>
-            </div>
+            <form action="<?php echo $_SERVER['PHP_SELF'];?>" method="post" id = "form">
 
             <div class="formContainer2">
+          
             <input type="text" placeholder="Title" name = "title">  
             <p class ="empty_Message"><?php echo $title_error;?></p> 
             <textarea  placeholder="Description" name= "description"></textarea>
@@ -101,8 +123,7 @@ a{
             </div>
             <div class="formContainer3">
              <input type="submit" id = "submit" class = "button_secondary submit" value="Publish">
-              <span class="login"><a href="list.php"> list of post</a></span>  
-             <span class = "login">  <a href="signOut.php" >LogOut</a></span>
+            
                 <div class="checkbox">
 
                         <div class="checkboxInner">
@@ -170,7 +191,9 @@ a{
                             
                 </div>
             </div>
-        </form>
+            </form>
+        </div>
+        </div>
     </div>
        
    </div>

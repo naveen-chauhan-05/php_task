@@ -27,7 +27,7 @@
                     session_start();
                     $_SESSION['loggedIn']=true;
                     $_SESSION['email'] = $email;             
-                    header("location:post.php");
+                    header("location:category.php");
                     }
                 else{
                         $showMessage = "Sorry Wrong Password";

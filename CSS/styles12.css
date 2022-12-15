@@ -1,7 +1,4 @@
-body{
-    width: 100%;
-    height: 100%;
-}
+ 
 /* Sign up page  */
  .container_signUp{
     background-color:#c8dbda;
@@ -72,7 +69,7 @@ padding: 20px 30px;
 .container{
  width: 100%;
  border: 2px solid black;  
- margin: 5px; 
+ 
 }
 .mainHeading{
 text-align:center;
@@ -81,18 +78,28 @@ margin: 2px;
 }
 .container_category{
     display: flex;
- margin: 0px auto;
+ margin: 0px 10px;
  margin-bottom: 10px;
 width: 95%;
- 
- 
+justify-content: space-evenly;
 }
- 
+.subcontainer_category{
+align-self: start;
+    padding: 15px;
+    /* border: 2px solid green; */
+    width: 15%;
+    margin: 2px;
+} 
+.all_page{
+    text-align:center;
+    border: 2px solid green;
+    margin: 10px;
+    font-size: 20px;
+}
     
 .subcontainer1{
  margin: 10px;
 width: 80%;
-
 border: 2px solid green;
 height: 500px;
 display: flex;
@@ -141,13 +148,13 @@ width: 30%;
 width: 90%;
 padding: 5px;
 border: 2px solid black;
-margin: 2px auto;
+margin: 10px auto;
 text-align:center;
 
 }
 .update_button a{
 text-decoration: none;
-font-size: 15px;
+font-size: 20px;
 padding: 7px;
 }
 option{
@@ -172,7 +179,7 @@ option{
     margin: 2px;
 }
 .subContainer{
-     border: 2px solid black;
+     /* border: 2px solid black; */
     margin: 2px auto;
     width:  100%;
     height: 80%;
@@ -181,32 +188,41 @@ option{
     margin: 2px;
     text-align: center;
 }
+.post_form{
+    border: 2px solid green;
+    width: 95%;
+    margin: auto;
+display: flex;
+}
+.subcontainer_post{
+    width: 80%;
+}
 #form{
      
     display: flex;
+   
     height: 100%;
+    /* border: 2px solid yellow; */
     /*width: 100%;*/
+    justify-content: space-evenly;
 }
-.formContainer{
-      
-    width: 15%;
-    height: 70%;
-}
+ 
 textarea{
-    height: 90%;
+    height: 70%;
     margin: 10px;
     width: 90%;
     text-align: center;
 
 }
 .formContainer2{
-    
+    margin: 5px; 
+    /* border: 2px solid green; */
      width: 30%;
-     height: 60%;
+     height: 300px;
  }
  .formContainer3{
-      
-    /*width:80%;*/
+      margin: 5px;
+     width: 60%;
      height: 60%;
  }
  
