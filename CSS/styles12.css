@@ -38,8 +38,13 @@ padding: 20px 30px;
     width: 60%;
     margin: 10px auto;
 }
-input[type ="email"], input[type = "password"]{
+.formInner_signUp input[type ="email"], input[type = "password"], input[type = "text"]{
     margin: 10px;
+        width: 90%;
+        height: 50px;
+    }
+.formInner_index input[type="email"]{
+     margin: 10px;
         width: 90%;
         height: 50px;
     }
@@ -167,9 +172,9 @@ option{
     margin: 2px;
 }
 .subContainer{
-    border: 2px solid black;
+     border: 2px solid black;
     margin: 2px auto;
-    width:  90%;
+    width:  100%;
     height: 80%;
 }
 .subHeading{
@@ -177,12 +182,14 @@ option{
     text-align: center;
 }
 #form{
+     
     display: flex;
     height: 100%;
+    /*width: 100%;*/
 }
 .formContainer{
-     
-    width: 20%;
+      
+    width: 15%;
     height: 70%;
 }
 textarea{
@@ -198,13 +205,13 @@ textarea{
      height: 60%;
  }
  .formContainer3{
-     /* / border: 2px solid black; / */
-    width: 40%;
+      
+    /*width:80%;*/
      height: 60%;
  }
  
  input[type = "text"]{
-    margin: 10px;
+     
 width: 90%;
 height: 40px;
  }
@@ -267,9 +274,7 @@ cursor:pointer;
     .button_secondary {
          background-color: #e1d3e7;
     }
-    
-    .logOut{
-        border: 2px solid black;
-        padding: 10px;
-        border-radius: 10px;
-    }
+
+
+  
+

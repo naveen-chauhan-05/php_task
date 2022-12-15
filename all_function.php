@@ -1,4 +1,3 @@
-
 <?php
 function db(){
 $servername = "localhost";
@@ -34,7 +33,8 @@ return $tablefound;
  
  }
  
- function select($table, $limit=NULL, $offset=NULL, $where=NULL){
+ function select($table, $limit=NULL, $offset=NULL, $where=NULL, $firstDate=NULL, $endDate=NULL){
+
     $conn = db();
    
    $table1 = checkTable($table);
@@ -43,15 +43,41 @@ return $tablefound;
     if($where!=NULL){
         $sql .= " WHERE ";
         foreach ($where as $key => $value) {
+            if($value ==""){
+                break;
+            }
         $sql .= $key." = '".$value."'";
         }
+       
+    }
+    if($firstDate!=NULL){
+        if($value!=""){
+            $sql  .= " && ";
+        }
+    
+        foreach ($firstDate as $key1 => $value1) {
+            if($value1==""){
+                break;
+            }
+        $sql .= $key1. " >= '".$value1."'";
+        }
+    }
+    if($endDate!=NULL){
+        if($value1!=""){
+
+            $sql  .= " && ";
+        }
+     
+        foreach ($endDate as $key2 => $value2) {
+            $sql .= $key2. " <= '".$value2."'";
+            }
+    
     }
        if($limit && $offset>=0 ){
         $sql .= " LIMIT ".$limit." OFFSET ".$offset;
          
        }
-    //    echo $sql;
-    //    echo "<br>";
+     
        $result = mysqli_query($conn, $sql);
        $count = mysqli_num_rows($result);
        echo "<br>";
@@ -82,20 +108,47 @@ return $tablefound;
 
     }
 
-    function count_row($table, $array=NULL){
+    function count_row($table, $array=NULL, $firstDate=NULL, $endDate=NULL){
         $conn = db();
         $table1 = checkTable($table);
         if($table1){
         
             $sql = "SELECT * FROM $table";
-            if($array!=NULL)
-            {
-                  
+            if($array!=NULL){
                 $sql .= " WHERE ";
-                foreach ($array as $key => $value1) {
-                 $sql .= $key." = '".$value1."'";
+                foreach ($array as $key => $value) {
+                    if($value ==""){
+                        break;
+                    }
+                $sql .= $key." = '".$value."'";
+                }
+               
+            }
+            if($firstDate!=NULL){
+                if($value!=""){
+                    $sql  .= " && ";
+                }
+            
+                foreach ($firstDate as $key1 => $value1) {
+                    if($value1==""){
+                        break;
+                    }
+                $sql .= $key1. " >= '".$value1."'";
                 }
             }
+            if($endDate!=NULL){
+                if($value1!=""){
+        
+                    $sql  .= " && ";
+                }
+             
+                foreach ($endDate as $key2 => $value2) {
+                    $sql .= $key2. " <= '".$value2."'";
+                    }
+            
+            }
+
+            
               
             $result = mysqli_query($conn, $sql);
             $count = mysqli_num_rows($result);
@@ -477,22 +530,32 @@ echo  "<a href ='".$_SESVER['PHP_SELF']."?page=".($page-2)."'class = 'pagination
 }
 if($page>1)
 {
-    if (empty($_GET['select'])) {
-echo  "<a href ='".$_SESVER['PHP_SELF']."?page=".($page-1)."' class = 'pagination'> <</a>";
+    if (empty($_GET['filter']) ) {
+       
+        echo  "<a href ='".$_SESVER['PHP_SELF']."?page=".($page-1)."' class = 'pagination'> <</a>";
     }
     else{
         
-            echo "<a href='?select=".$_GET['select']."&Date1=&Date2=&filter=filter".$_SESVER['PHP_SELF']."&page=".($page-1)."' class = 'pagination'> <</a>";
-    
+        echo "<a href='?select=".$_GET['select']."&Date1=".$_GET['date1']."&Date2=".$_GET['date2']."&filter=filter".$_SESVER['PHP_SELF']."&page=".($page-1)."' class = 'pagination'> <</a>";
     }
 }
 echo "<span class = 'text'>".$page." of ". $allPages."</span>";
 if($allPages>$page){
-    if (empty($_GET['select'])) {
-        # code...
+    if (empty($_GET['filter'])) {
+        
   echo "<a href='".$_SESVER['PHP_SELF']."?page=".($page+1)."' class = 'pagination'> ></a>";
-}else{
-    echo "<a href='?select=".$_GET['select']."&Date1=&Date2=&filter=filter".$_SESVER['PHP_SELF']."&page=".($page+1)."' class = 'pagination'> ></a>";
+}
+else if(empty($_GET['search'])){
+    echo "<a href='".$_SESVER['PHP_SELF']."?page=".($page+1)."' class = 'pagination'> ></a>"; 
+    
+}
+    else{
+     if($_GET['filter']){
+    echo "<a href='?select=".$_GET['select']."&Date1=".$_GET['date1']."&Date2=".$_GET['date2']."&filter=filter".$_SESVER['PHP_SELF']."&page=".($page+1)."' class = 'pagination'> ></a>";
+     }
+     else{
+        echo "<a href='?value=".$_GET['value']."&search=search".$_SESVER['PHP_SELF']."&page=".($page+1)."' class = 'pagination'> ></a>";
+     }
 }
 }
 if($allPages>$page && $page != $allPages-1 && $page !=$allPages){

@@ -5,12 +5,22 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Category</title>
-    <link rel="stylesheet" href="CSS/styles.css">
+    <link rel="stylesheet" href="CSS/styles12.css">
+    <style>
+.login{
+    border: 2px solid black;
+    padding: 10px;
+    border-radius: 10px;
+    margin: 10px;
+    font-size: 18px;
+}
+a{
+    text-decoration: none;
+}
 
-<style>
- 
 </style>
 </head>
+
 <body>
 
 
@@ -198,8 +208,9 @@ if($getId==true){
 </div>
 <div class="formInner">
     <input type="submit" value="save" name = "save" class = "submit button_secondary">
-    <a href="list.php"> list of post</a>
-    <a href="signOut.php" class = "logOut">LogOut</a>
+  <span class="login"><a href="list.php"> list of post</a></span>  
+    <span class = "login">  <a href="signOut.php" >LogOut</a></span>
+  
 </div>
  
 

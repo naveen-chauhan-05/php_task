@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="CSS/styles.css">
+    <link rel="stylesheet" href="CSS/styles12.css">
     <title>Sign Up</title>
     <style>
     .empty_Message{
@@ -16,10 +16,10 @@
  
 <body>
     <?php
-    $email=$pass =$cpass =""; 
+    $email=$pass =$cpass =$user =""; 
     $info = "";
     $showError = true;
-    $email_error=$pass_error= $cpass_error= "";
+    $email_error=$pass_error= $cpass_error= $usernameError="";
     if($_SERVER['REQUEST_METHOD']=="POST"){
         include 'all_function.php';
      
@@ -29,6 +29,13 @@
     else{
         $email_error = "Please Enter your Email";
     }
+     if(!empty($_POST['username'])){
+       $user = $_POST['username'];
+        }
+    else{
+        $usernameError= "Please Enter your Name";
+    }
+
     if(!empty($_POST['pass'])){
         $pass = $_POST['pass'];
         }
@@ -46,23 +53,23 @@
         $email = $_POST['email'];
         $pass = $_POST['cpass'];
         $cpass = $_POST['pass'];
-        if($email!="" && $pass!="" && $cpass != ""){
+        if($email!="" && $pass!="" && $cpass != "" && $user!=""){
             
    if($pass == $cpass){
                 $hashpass = password_hash($pass, PASSWORD_DEFAULT);
-            $showMessage = insert("user_signup", array('email'=> $email, 'password' => $hashpass));
-            if($showMessage){
-                $showError = false;
-            $info = "Your form Submited Now You Logged In!";
+            $showMessage = insert("user_signup", array('email'=> $email, 'password' => $hashpass, 'Author'=>$user));
+                    if($showMessage){
+                        $showError = false;
+                    $info = "Your form Submited Now You Logged In!";
 
-            }
-            else{
-                $info = "Not available";
-}
-   }
-   else{
-       $info = "password does not match ";
-   }
+                    }
+                    else{
+                        $info = "Not available";
+                    }
+               }
+               else{
+                   $info = "password does not match ";
+               }
         }
         else{
             $info =  "Please Fill Requaired Filled";
@@ -73,11 +80,15 @@
 <div class = "getMessage"><h2><?php echo $info?></h2></div>
         <form action="<?php echo $_SERVER['PHP_SELF'];?>" method ="POST">
             <hea</head>
-            <div class="formInner">
+            <div class="formInner_signUp">
                 <input type="email" name="email" placeholder="Email">
                   <p class ="empty_Message"><?php echo $email_error;?></p>
             </div>
-            <div class="formInner">
+            <div class="formInner_signUp">
+                <input type="text" name="username" placeholder="Name">
+                  <p class ="empty_Message"><?php echo $usernameError;?></p>
+            </div>
+            <div class="formInner_signUp">
                 <input type="password" name="pass" id="pass" placeholder="Password">
                 <p class ="empty_Message"><?php echo $pass_error;?></p>
             </div>

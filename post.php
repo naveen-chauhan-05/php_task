@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="CSS/styles.css">
+    <link rel="stylesheet" href="CSS/styles12.css">
     <title>Category</title>
 <?php
 $showMessage = false;
@@ -13,17 +13,27 @@ $showMessage = false;
 ?>
 <style>
  
-
+.login{
+    border: 2px solid black;
+    padding: 10px;
+    border-radius: 10px;
+    margin: 10px;
+    font-size: 18px;
+}
+a{
+    text-decoration: none;
+}
+.formContainer3{
+  width: 49%;
+  /*border: 4px solid red;*/
+}
 </style>
 </head>
 <body>
    <div class="post_container">
-
       <?php
       session_start();
       $session_email = $_SESSION['email'];
-      echo $session_email;
- 
         $insert = false;
          include 'all_function.php';
          $showHeading ="";
@@ -91,7 +101,8 @@ $showMessage = false;
             </div>
             <div class="formContainer3">
              <input type="submit" id = "submit" class = "button_secondary submit" value="Publish">
-             <span class= "logOut"><a href="signOut.php">Log Out</a></span>
+              <span class="login"><a href="list.php"> list of post</a></span>  
+             <span class = "login">  <a href="signOut.php" >LogOut</a></span>
                 <div class="checkbox">
 
                         <div class="checkboxInner">

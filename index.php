@@ -1,23 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="CSS/styles.css">
-    <title>Login</title>
-    <style>
-.empty_Message{
-    text-align: left;
-    margin:0px;
-    margin-left: 25px;
-}
-    </style>
-</head>
-<body>
- 
- <?php 
- 
+<?php 
  $loggin = false;
  $showMessage = "";
  $password  = $email = ""; 
@@ -42,12 +23,11 @@
  
             if($row){
                 if(password_verify($password, $row['password'])){
-                    echo "hello";
                     $loggin = true;
                     session_start();
                     $_SESSION['loggedIn']=true;
                     $_SESSION['email'] = $email;             
-                    header("location: post.php");
+                    header("location:post.php");
                     }
                 else{
                         $showMessage = "Sorry Wrong Password";
@@ -62,6 +42,24 @@
             
  }
  ?>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="CSS/styles12.css">
+    <title>Login</title>
+    <style>
+.empty_Message{
+    text-align: left;
+    margin:0px;
+    margin-left: 25px;
+}
+    </style>
+</head>
+<body>
+ 
+ 
 
 
   <div class="container_index">
@@ -81,7 +79,7 @@
     <p class ="empty_Message"><?php echo $passwordError;?></p>
 </div>
  <div class="formButton">
-<input type="submit" value="Submit" class="submit" class="login">
+<input type="submit" value="Submit" class="submit">
  </div>
 
 

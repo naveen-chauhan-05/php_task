@@ -114,8 +114,10 @@ echo "<option value = ''> All Category </a></option>";
 </div>
 </form>
 <div class="thourthDiv">
-<input type="search">
-<input type="submit" value ="Search Post">
+    <form action="" method="GET">
+<input type="text" placeholder = "search" name = "value">
+<input type="submit" value ="search" name = "search">
+</form>
 </div>
  </div>
     <div class="subcontainer">
@@ -150,17 +152,54 @@ echo "<option value = ''> All Category </a></option>";
                 
                 
           }
-          if($catid==""){  
+          if(isset($_GET['search'])){
+            $search = $_GET['value'];
+        
+        }
+            
+              
           $select = select("post_category", $limit, $offset);
           
           $numberRows = count_row("post_category");
-          }
-          else{
+          
+          if($catid!=""){
               $select = select("post_category", $limit, $offset, array('Game_Category'=>$catid));
                
               $numberRows = count_row("post_category", array('Game_Category'=>$catid));
-              
-          }
+           
+        }
+        if($firstDate!="" || $endDate!= ""){
+            
+          $select = select("post_category", $limit, $offset, array('Game_Category'=>$catid), array('timestamp' => $firstDate), array('timestamp'=>$endDate));
+         
+          $numberRows = count_row("post_category", array('Game_Category'=>$catid), array('timestamp'=> $firstDate), array('timestamp'=>$endDate));
+            
+    }
+       if($search!=""){
+        $array = select("post_category");
+        
+        foreach ($array as $key => $value) {
+            if($search==$value['title']){
+                 $temp = $value['title'];
+                 $val = 'title';
+                 
+                
+            }
+            if($search==$value['post_user']){
+                $temp = $value['post_user'];
+                $val = 'post_user';
+                
+               
+            }
+            if($search==$value['description']){
+                $temp = $value['description'];
+                $val = 'description';
+                
+            }
+        }
+        $select = select("post_category", $limit, $offset, array($val=>$temp));
+        $numberRows = count_row("post_category", array($val=>$temp));
+       }
            echo "<tr>";
            foreach ($select as $key => $value) {
            echo  '<td><input type="checkbox" name ="" id = ""/>'.$value['title'].'</td>';
