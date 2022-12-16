@@ -1,0 +1,57 @@
+<select name="category" id="">
+                    <option value=""> Category</option>
+                        <?php    $category1 = select('game_category');
+                            foreach ($category1 as $key => $value) {
+                            ?>
+                                <option value="<?php echo $value['cid'];?>" <?php if($getId==true && $select['Game_Category']   ==$value['cid']){
+                                echo "selected='selected'";} else{
+                                       
+                                    if($getUpdate!=true && $value['cid']==$category){
+                                            echo "selected='selected'";
+                                    }
+                                    
+                                }
+                                ?>><?php echo $value['category_name'];?></option><?php
+                             }
+                        
+                            ?>
+                </select>
+
+
+                ///   <div class="hiddendiv" id= "showDiv">
+                                      <?php
+                                 $array = countRowCondition("post_category", array("Game_Category"));
+                                 $showdiv = false;
+                                 $table = select("game_category");
+                                
+                                  
+                                 foreach ($array as $key1 => $value1) {
+                                   
+                                    
+                                    $i = 1;
+                                    $check = $value1['Game_Category'];
+                                     foreach ($table as $key => $value) {
+                                       if($check==$i)
+                                          {
+                                         ?>
+
+                                        <input type="checkbox" name = "categoryName[]" value ="<?php echo $i;?>" <?php foreach ($var_array as $k=> $v){
+                                           if($v==$value['cid']){
+                                            echo 'checked="checked"';
+                                           }
+                                       }      
+                                       ?>> <?php echo $value['category_name']; ?><br>
+                                    
+                                   <?php  }
+                                    
+                                    $i++;
+                                  
+                                 }
+                                
+                              }
+                                 
+                                 ?>
+                                </div>
+    value= "<?php if($getId==true){ echo $select['description'];}else{if($getUpdate!=true){
+                    echo $desc;
+                }}?>"

@@ -90,12 +90,7 @@ table{
      
 
  }
- .logOut{
-        border: 2px solid black;
-        padding: 10px;
-        text-decoration: none;
-        border-radius: 10px;
-    }
+  
     .bottomDiv{
         display: flex;
     justify-content: space-between;
@@ -104,7 +99,19 @@ table{
     td a{
         text-decoration: none;
     }
+    form{
+      width: 100%;
+    }
+.para{
+  color: red;
+}
+.deleteButton{
+    border: 2px solid black;
+        padding: 10px;
+         font-size: 18px;
+        border-radius: 10px;
 
+}
     </style>
  </head>
  <body>
@@ -134,9 +141,7 @@ table{
     </div>
   <div class="field">
 <div class="list_navbar">
-<div class="primaryDive">
-<a href="delete">Delete</a>
-</div>
+
  <div class="firstDiv">
     <form action="" method ="get">
 <select name="select" id="">
@@ -171,10 +176,27 @@ echo "<option value = ''> All Category </a></option>";
 </form>
 </div>
  </div>
-    <div class="subcontainer">
+    
+    <?php if(isset($_POST['delete'])){
+$delete_value = $_POST['edit'];
+ 
+if(!empty($delete_value)){
+  // $delete = getDelete();
+  foreach ($delete_value as $key => $value) {
+    $delete = getDelete('post_category', array('id'=>array($value)));
+  }
+  if($delete){
+    echo "<p class ='para'>Your Value are deleted</p>";
+  }
 
-    </div>
+}else{
+  echo "<p class = 'para'>Select any value for deleting!</p>";
+}
+
+  }?>
+     <form action ="" method="post">
     <div class="table_container">
+     
         <table border="1">
       
  <tr>
@@ -255,10 +277,28 @@ echo "<option value = ''> All Category </a></option>";
            echo "<tr>";
 
            foreach ($select as $key => $value) {
-            $v1  = selectOneRow("game_category", array('cid'=>$value['Game_Category']));
-           echo  '<td><input type="checkbox" name ="" id = ""/><a href="edit.php?title='.$value['id'].'&&success=true">'.$value['title'].'</a></td>';
+            // $v1  = selectOneRow("game_category", array('cid'=>$value['Game_Category']));
+            // echo "<pre>";
+            // print_r($select);
+            $v2 = explode(",", $value['Game_Category']);
+            echo "<pre>";
+            $index = 0;
+            foreach ($v2 as $k => $v) {
+                $v1  = selectOneRow("game_category", array('cid'=>$v));
+               
+                if($index==0){
+                $game = $v1['category_name'];
+                }
+                else{
+                    $game .= " , ";
+                    $game .= $v1['category_name'];
+                }
+                $index++;
+            
+            }
+           echo  '<td><input type="checkbox" name ="edit[]" value='.$value['id'].'><a href="edit.php?title='.$value['id'].'&&success=true">'.$value['title'].'</a></td>';
            echo "<td>".$value['post_user']."</td>";
-           echo  '<td>'.$v1['category_name'].'</td>';
+           echo  '<td>'.$game.'</td>';
            echo  '<td>'.$value['timestamp'].'</td>';
            echo "</tr>";
            }
@@ -268,12 +308,10 @@ echo "<option value = ''> All Category </a></option>";
         </table>
         <div class="bottomDiv">
         <div class= "logOutDiv">
-        <a href="signOut.php" class="logOut">LogOut</a>
+      <input type="submit" name="delete" value="Delete" class="deleteButton">
         </div>
-        <div class="logOutDiv">
-
-        <a href="post.php" class="logOut">Add new Post</a>
-        </div>
+      </form>
+        
         <div class="footer">
        
     <?php  

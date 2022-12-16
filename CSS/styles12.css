@@ -16,7 +16,6 @@
 
 margin: 10px 12px;
 width:90%;
-text-align: center;
 padding: 1px 0px;
 color: white;
 }
@@ -186,7 +185,7 @@ option{
 }
 .subHeading{
     margin: 2px;
-    text-align: center;
+    
 }
 .post_form{
     border: 2px solid green;
@@ -211,8 +210,6 @@ textarea{
     height: 70%;
     margin: 10px;
     width: 90%;
-    text-align: center;
-
 }
 .formContainer2{
     margin: 5px; 
@@ -233,7 +230,7 @@ height: 40px;
  }
  
  ::placeholder{
-     text-align: center;
+      
  }
  h3{
      margin: 0px 10px;

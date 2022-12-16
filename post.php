@@ -57,7 +57,8 @@ a{
             $description_error = "Please Filled Description";  
            }
            if(!empty($_POST['category_game'])){
-            $category = $_POST['category_game'];
+            $cat = $_POST['category_game'];
+            $category = implode(",", $cat);
            }
            else{
             $category_error = "Please Filled Category";  
@@ -150,7 +151,7 @@ a{
                                     $table = select("game_category");
                                     $i = 0;
                                     foreach ($table as $key => $value) {
-                                    echo '<input type="checkbox" name ="category_game" value = "'.$value['cid'].'">'.$value['category_name'].'<br>';
+                                    echo '<input type="checkbox" name ="category_game[]" value = "'.$value['cid'].'">'.$value['category_name'].'<br>';
                                     $i++;
                                      }
                                 
@@ -171,7 +172,7 @@ a{
                                      foreach ($table as $key => $value) {
                                        if($check==$i)
                                           {
-                                        echo '<input type="checkbox" name ="category_game" value = "'.$i.'">'.$value['category_name'].'<br>';
+                                        echo '<input type="checkbox" name ="category_game[]" value = "'.$i.'">'.$value['category_name'].'<br>';
                                         
                                     
                                      }

@@ -591,5 +591,43 @@ echo '</body>
 </html>';
 }
 
+function getDelete($table, $delete){
+    $conn = db();
+    $table1 = checkTable($table);
+    if($table1){
+        $detete = false;
+        $sql = " DELETE FROM `".$table.
+        "` WHERE ";
+        
+      foreach ($delete as $key => $value) {
+        $sql .= $key." IN (";
+        $i = 0;
+        foreach ($value as $value1) {
+           
+           if($i==0){
+            $sql .= $value1;
+           }
+           else{
+            $sql .= ", ";
+            $sql .= $value1;
+           }
+            
+            $i++;
+        }
+        $sql .=" )";
+      }
+    
+    $query = mysqli_query($conn, $sql);
+    if($query){
+        
+        $delete = true;
+        return $delete;
+    }
+    }
+    
+    
+}
+//  $delete = getDelete("post_category", array('id'=>array(8, 11)));
+//  var_dump($delete);
  
 ?>
