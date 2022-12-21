@@ -4,15 +4,15 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JS PROBLEM</title>
+    <title>js_problme</title>
 </head>
 <body>
-    <p>Problem 1</p>
-    <p id="array"></p>
-    <p>problem 2</p>
-    <p id="second"></p>
-    
+    <h3>JS PROBLEM</h3>
+    <ul>
+        <li>
+
+        </li>
+        <li></li>
+    </ul>
 </body>
-<script src="problem11.js"></script>
-<script src="problem12.js"></script>
 </html>

@@ -14,4 +14,4 @@ for (let index = 0; index < fruiDb.length; index++) {
 }
 return onlyFruit;
 }
- console.log(filterFruit(fruitDb));
+document.getElementById('second').innerHTML = filterFruit(fruitDb);
