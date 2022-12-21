@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS PROBLEM</title>
+    <style>
+        .container{
+            border: 2px solid black;
+            width: 700px;
+            margin: 10px auto;
+            padding: 10px;
+            
+        }
+        .mainHeading{
+            margin: 0px;
+            padding: auto;
+            text-align: center;
+        }
+        .formInner{
+            width: 90%;
+            text-align: center;
+           
+            margin: 10px;
+        }
+        input[type ="text"], [type ="date"]{
+            width: 100%;
+            height: 50px;
+        }
+    ::placeholder{
+        text-align: center;
+        font-size: 20px;
+    }
+    .button{
+        /* width: 100px; */
+        font-size: 20px;
+        font-weight: bolder;
+        padding: 15px 40px;
+        border-radius: 10px;
+ 
+    }
+    .para{
+       text-align: center;
+        width: 90%;
+        margin: 10px auto;
+        font-size: 20px;
+        border: 2px solid black;
+        height: 70px;
+    }
+     
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="mainHeading">
+        <h2>Date Difference</h2>
+        </div>
+        <div class="formInner">
+    <input type="text" class="date_box" name="date1" id = "date1" placeholder="Choose Your Date 1" onclick="(this.type='date')">
+        </div>
+    <div class="formInner">
+    <input type="text" class="date_box" name="date1" id = "date2" placeholder="Choose Your Date 1" onclick="(this.type='date')">
+    </div>
+    <div class="formInner">
+    <button type="button" onclick="function1()" class="button">Click</button>
+ </div>
+ <div class="para">
+    <p id="dateproblem"  ></p>
+</div>
+    </div>
+</body>
+<script src="problem3.js"></script>
+</html>
