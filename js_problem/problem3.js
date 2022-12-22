@@ -8,7 +8,7 @@
      const diffTime = Math.abs(d2-d1);
      const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
     let finalDiff   = "";
-     if(diffDays<30){
+     if(diffDays<=30){
      finalDiff += diffDays+" days";
      }
   else if(diffDays>30 && diffDays<365){
@@ -19,7 +19,7 @@
                  finalDiff += " or "+ days + " days ";
             }         
         }
-         else{
+    else{
              console.log("total Day "+diffDays);
              let year = Math.floor(diffDays/365);
              finalDiff += year + " Year ";
