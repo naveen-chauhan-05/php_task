@@ -36,7 +36,7 @@ a{
 <body>
    <div class="post_container">
       <?php
-      session_start();
+     
       $session_email = $_SESSION['email'];
         $insert = false;
          include 'all_function.php';
@@ -159,7 +159,14 @@ a{
                                 </div>
                                       <div class="hiddendiv" id= "showDiv">
                                       <?php
-                                 $array = countRowCondition("post_category", array("Game_Category"));
+                                      $select_array = select("post_category");
+                                       foreach ($select_array as $key => $value) {
+                                       
+                                           $value_array = explode(",", $value['Game_Category']);
+                                       
+                                        //    $array = countRowCondition("post_category", $value_array);
+                                       }
+                                       $array = countRowCondition("post_category", array('Game_Category'));
                                  $showdiv = false;
                                  $table = select("game_category");
                                   

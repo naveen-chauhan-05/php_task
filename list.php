@@ -21,7 +21,7 @@ display: flex;
   /*border: 2px solid green;*/
   align-self: start;
     padding: 15px;
-    /* border: 2px solid green; */
+    / border: 2px solid green; /
     width: 15%;
     margin: 2px;
 
@@ -51,7 +51,7 @@ table{
     width: 100%;
    border: 2px dashed #c1c7c2;
    
-    /* align-self: end; */
+    / align-self: end; /
     border-collapse: collapse;
 }
   tr td{
@@ -82,11 +82,11 @@ table{
  }
  .logOutDiv{
     margin: 5px;
-     /* background-color: #e5ede5; */
+     / background-color: #e5ede5; /
      padding: 15px 5px;
         font-size: 18px;
      align-self: start;
-     /* border: 2px solid black; */
+     / border: 2px solid black; /
      
 
  }
@@ -218,65 +218,74 @@ if(!empty($delete_value)){
           $limit = 5;
           $i = 0;
           $offset = ($limit *$page)-$limit;
-          if(isset($_GET['filter'])){
+          $catid =0;
+          $firstDate = "";
+          $endDate = "";
+          $search = "";
+          if(isset($_GET['filter'])&& !empty($_GET['filter'])){
+            
                 $catid = $_GET['select'];
                 $firstDate = $_GET['Date1'];
-                $endDate= $_GET['Date2'];
+                $endDate= $_GET['Date2'];     
                 
-                
-          }
+          } 
+          $search="";
           if(isset($_GET['search'])){
             $search = $_GET['value'];
         
         }
-            
-              
+      
           $select = select("post_category", $limit, $offset);
           
           $numberRows = count_row("post_category");
-          
-          if($catid!=""){
+          if($catid>0){
+           
               $select = select("post_category", $limit, $offset, array('Game_Category'=>$catid));
-               
+             
               $numberRows = count_row("post_category", array('Game_Category'=>$catid));
            
-        }
-        if($firstDate!="" || $endDate!= ""){
+            }
+          if($firstDate!=""){
             
-          $select = select("post_category", $limit, $offset, array('Game_Category'=>$catid), array('timestamp' => $firstDate), array('timestamp'=>$endDate));
+            $select = select("post_category", $limit, $offset, array('Game_Category'=>$catid), array('timestamp' => $firstDate));
          
-          $numberRows = count_row("post_category", array('Game_Category'=>$catid), array('timestamp'=> $firstDate), array('timestamp'=>$endDate));
+            $numberRows = count_row("post_category", array('Game_Category'=>$catid), array('timestamp'=> $firstDate));
             
-    }
-       if($search!=""){
-        $array = select("post_category");
-        
-        foreach ($array as $key => $value) {
-            if($search==$value['title']){
-                 $temp = $value['title'];
-                 $val = 'title';
-                 
-                
             }
-            if($search==$value['post_user']){
-                $temp = $value['post_user'];
-                $val = 'post_user';
-                
+            if($endDate!=""){
                
-            }
-            if($search==$value['description']){
-                $temp = $value['description'];
-                $val = 'description';
-                
-            }
-        }
-        $select = select("post_category", $limit, $offset, array($val=>$temp));
-        $numberRows = count_row("post_category", array($val=>$temp));
-       }
-      
-           echo "<tr>";
+              $select = select("post_category", $limit, $offset, array('Game_Category'=>$catid), array('timestamp' => $firstDate), array('timestamp'=>$endDate));
+           
+              $numberRows = count_row("post_category", array('Game_Category'=>$catid), array('timestamp'=> $firstDate), array('timestamp'=>$endDate));
+              
+              }
+          if($search!=""){
 
-           foreach ($select as $key => $value) {
+            // $array = select("post_category");
+            // echo $search;
+ 
+      
+       $select = select("post_category", $limit, $offset, array('title'=>$search));
+       $numberRows = count_row("post_category", array('title'=>$search));
+if($numberRows==0){
+      $select = select("post_category", $limit, $offset, array('post_user'=>$search));
+       $numberRows = count_row("post_category", array('post_user'=>$search));
+}
+ if($numberRows==0){
+  $select = select("post_category", $limit, $offset, array('timestamp'=>$search));
+  $numberRows = count_row("post_category", array('timestamp'=>$search));
+ }
+//  if($numberRows==0){
+
+//   $select = select("post_category", $limit, $offset, array('timestamp'=>$search));
+//   $numberRows = count_row("post_category", array('timestamp'=>$search));
+//  }
+       }
+ 
+           echo "<tr>";
+           if($numberRows>0){
+           foreach ($select as $key => $value) 
+        {
             // $v1  = selectOneRow("game_category", array('cid'=>$value['Game_Category']));
             // echo "<pre>";
             // print_r($select);
@@ -301,7 +310,7 @@ if(!empty($delete_value)){
            echo  '<td>'.$game.'</td>';
            echo  '<td>'.$value['timestamp'].'</td>';
            echo "</tr>";
-           }
+        }
            
            ?>
        
@@ -318,7 +327,10 @@ if(!empty($delete_value)){
   
     echo "<span class = 'text'>".$numberRows." items </span>";
       paging($limit, $numberRows, $page);
-    
+    }
+    else{
+      echo "No Values Found in your table";
+    }
           
     ?>
     
@@ -336,6 +348,6 @@ if(!empty($delete_value)){
  </html>
  <?php }
  else{
-     header("Location: index.php;");
+     header("Location: index.php");
  }
  ?>

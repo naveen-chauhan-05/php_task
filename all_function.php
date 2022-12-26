@@ -36,7 +36,8 @@ return $tablefound;
  function select($table, $limit=NULL, $offset=NULL, $where=NULL, $firstDate=NULL, $endDate=NULL){
 
     $conn = db();
-   
+//    print_r($where);
+// print_r($endDate);
    $table1 = checkTable($table);
    if($table1){
     $sql = "SELECT * FROM $table ";
@@ -46,7 +47,7 @@ return $tablefound;
             if($value ==""){
                 break;
             }
-        $sql .= $key." = '".$value."'";
+        $sql .= $key." LIKE '%".$value."%'";
         }
        
     }
@@ -61,6 +62,7 @@ return $tablefound;
             }
         $sql .= $key1. " >= '".$value1."'";
         }
+      
     }
     if($endDate!=NULL){
         if($value1!=""){
@@ -68,16 +70,17 @@ return $tablefound;
             $sql  .= " && ";
         }
      
-        foreach ($endDate as $key2 => $value2) {
-            $sql .= $key2. " <= '".$value2."'";
+        foreach ($endDate as $k => $value2) {
+            $sql .= $k. " <= '".$value2." 23:59:59'";
             }
     
     }
+  
        if($limit && $offset>=0 ){
         $sql .= " LIMIT ".$limit." OFFSET ".$offset;
          
        }
-     
+    // echo $sql;
        $result = mysqli_query($conn, $sql);
        $count = mysqli_num_rows($result);
        echo "<br>";
@@ -93,9 +96,7 @@ return $tablefound;
        }
        return $val;
     }
-    else{
-        echo "In Table No value";
-    }
+     
        }
        else{
            echo "no data fetch form your table";
@@ -112,7 +113,8 @@ return $tablefound;
         $conn = db();
         $table1 = checkTable($table);
         if($table1){
-        
+        $v1 ="";
+        $v2 = "";
             $sql = "SELECT * FROM $table";
             if($array!=NULL){
                 $sql .= " WHERE ";
@@ -120,39 +122,51 @@ return $tablefound;
                     if($value ==""){
                         break;
                     }
-                $sql .= $key." = '".$value."'";
+                $sql .= $key." LIKE '%".$value."%'";
+                $v1 = $value;
                 }
                
             }
-            if($firstDate!=NULL){
-                if($value!=""){
-                    $sql  .= " && ";
-                }
-            
+            if($firstDate!=NULL && !empty($firstDate)){
+               
+          
                 foreach ($firstDate as $key1 => $value1) {
                     if($value1==""){
                         break;
                     }
-                $sql .= $key1. " >= '".$value1."'";
-                }
-            }
-            if($endDate!=NULL){
-                if($value1!=""){
-        
-                    $sql  .= " && ";
-                }
-             
-                foreach ($endDate as $key2 => $value2) {
-                    $sql .= $key2. " <= '".$value2."'";
+                   else{
+                    if($v1!=""){
+                        $sql .= " && ";
                     }
-            
+                   }
+                        
+                    
+                $sql .= $key1. " >= '".$value1."'";
+                $v2 = $value1;
+                }
             }
-
             
-              
+          
+            if($endDate!=NULL){
+               
+            
+                foreach ($endDate as $key2 => $value2) {
+                    if($value2==""){
+                        break;
+                    }
+                    else{
+                        if($v1!=""&& $v2!=""){
+                    $sql .= " && ";
+                        }
+                    }
+                    $sql .= $key2. " <= '".$value2."'";
+                }
+            }          
+            // echo $sql;
             $result = mysqli_query($conn, $sql);
             $count = mysqli_num_rows($result);
-      return $count;
+            // echo $count;
+    return $count;
         }
         else{
             echo $table." Not match ";
@@ -193,6 +207,9 @@ if($table1){
  
  }
 }
+
+
+  
 //  call selectOneRow() function 
 // $select = selectOneRow('user_signup', array('email' =>'naveen@gmail.com'));
 // $students = selectOneRow('personal',array('Id'=>'4'));
@@ -459,14 +476,16 @@ function countRowCondition($table, $array){
     $tablecheck = checkTable($table);
     if($tablecheck){
        $sql = "SELECT ";
-    
+      
        foreach ($array as $key => $value) {
            $count_value=$value;
+          
              $sql .= $value.",";
             
        }
+   
        $sql .= " COUNT(".$count_value.") as most FROM ". $table. " GROUP BY ". $count_value. " HAVING COUNT(".$count_value.") > 1 ORDER BY most DESC";
-     
+       
        $query = mysqli_query($conn, $sql);
         
        
@@ -476,6 +495,7 @@ function countRowCondition($table, $array){
             }
         
        }
+      
     }
     else{
         echo "not check table";
@@ -531,7 +551,7 @@ if($page>2)
     }
     else{
         if($_GET['filter']){
-        echo "<a href='?select=".$_GET['select']."&Date1=".$_GET['Date1']."&Date2=".$_GET['Date2']."&filter=filter".$_SESVER['PHP_SELF']."&page=".($page-2)."' class = 'pagination'> <<</a>";
+        echo "<a href='?select=".$_GET['select']."&Date1=".$_GET['Date1']."&Date2=".$_GET['Date2']."&filter=filter".$_SERVER['PHP_SELF']."&page=".($page-2)."' class = 'pagination'> <<</a>";
         }
         else{
             echo "<a href='?value=".$_GET['value']."&search=search".$_SESVER['PHP_SELF']."&page=".($page-2)."' class = 'pagination'> <<</a>";
@@ -543,14 +563,14 @@ if($page>1)
 {
     if (empty($_GET['filter']) && empty($_GET['search'])) {
        
-        echo  "<a href ='".$_SESVER['PHP_SELF']."?page=".($page-1)."' class = 'pagination'> <</a>";
+        echo  "<a href ='".$_SERVER['PHP_SELF']."?page=".($page-1)."' class = 'pagination'> <</a>";
     }
     else{
         if($_GET['filter']){
-        echo "<a href='?select=".$_GET['select']."&Date1=".$_GET['Date1']."&Date2=".$_GET['Date2']."&filter=filter".$_SESVER['PHP_SELF']."&page=".($page-1)."' class = 'pagination'> <</a>";
+        echo "<a href='?select=".$_GET['select']."&Date1=".$_GET['Date1']."&Date2=".$_GET['Date2']."&filter=filter&page=".($page-1)."' class = 'pagination'> <</a>";
         }
         else{
-            echo "<a href='?value=".$_GET['value']."&search=search".$_SESVER['PHP_SELF']."&page=".($page-1)."' class = 'pagination'> <</a>";
+            echo "<a href='?value=".$_GET['value']."&search=search&page=".($page-1)."' class = 'pagination'> <</a>";
         }
     }
 }
@@ -558,31 +578,31 @@ echo "<span class = 'text'>".$page." of ". $allPages."</span>";
 if($allPages>$page){
     if (empty($_GET['filter']) && empty($_GET['search'])) {
          
-  echo "<a href='".$_SESVER['PHP_SELF']."?page=".($page+1)."' class = 'pagination'> ></a>";
+  echo "<a href='?page=".($page+1)."' class = 'pagination'> ></a>";
 }
  
     else{
         if($_GET['filter']){
             echo $_GET['date1'];
-                echo "<a href='?select=".$_GET['select']."&Date1=".$_GET['Date1']."&Date2=".$_GET['Date2']."&filter=filter".$_SESVER['PHP_SELF']."&page=".($page+1)."' class = 'pagination'> ></a>";
+                echo "<a href='?select=".$_GET['select']."&Date1=".$_GET['Date1']."&Date2=".$_GET['Date2']."&filter=filter&page=".($page+1)."' class = 'pagination'> ></a>";
                 
             }
             else{
-                echo "<a href='?value=".$_GET['value']."&search=search".$_SESVER['PHP_SELF']."&page=".($page+1)."' class = 'pagination'> ></a>";
+                echo "<a href='?value=".$_GET['value']."&search=search&page=".($page+1)."' class = 'pagination'> ></a>";
             }
 }
 }
 if($allPages>$page && $page != $allPages-1 && $page !=$allPages){
     if (empty($_GET['filter']) && empty($_GET['search'])) {
        
-        echo  "<a href ='".$_SESVER['PHP_SELF']."?page=".($page+2)."' class = 'pagination'> >></a>";
+        echo  "<a href ='?page=".($page+2)."' class = 'pagination'> >></a>";
     }
     else{
         if($_GET['filter']){
-        echo "<a href='?select=".$_GET['select']."&Date1=".$_GET['Date1']."&Date2=".$_GET['Date2']."&filter=filter".$_SESVER['PHP_SELF']."&page=".($page+2)."' class = 'pagination'> >></a>";
+        echo "<a href='?select=".$_GET['select']."&Date1=".$_GET['Date1']."&Date2=".$_GET['Date2']."&filter=filter&page=".($page+2)."' class = 'pagination'> >></a>";
         }
         else{
-            echo "<a href='?value=".$_GET['value']."&search=search".$_SESVER['PHP_SELF']."&page=".($page+2)."' class = 'pagination'> >></a>";
+            echo "<a href='?value=".$_GET['value']."&search=search&page=".($page+2)."' class = 'pagination'> >></a>";
         }
     }
   
