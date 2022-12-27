@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carsoul</title>
+    <style>
+        .container{
+            width: 98%;
+            margin: 5px; 
+            border: 2px solid black;
+
+        }
+        .item{
+            display: none;
+            width: 90%;
+            margin: 5px auto;
+          
+        }
+        img{
+            width: 100%;
+            height: 500px;
+        }
+        .prev, .next{
+cursor: pointer;
+        }
+        .dot{
+            cursor: pointer;
+        }
+        .allButton{
+            font-size: 20px; 
+            display: flex;
+            width: 90%;
+            margin:10px auto;
+            justify-content: space-between;
+            border: 2px solid black;
+        }
+        .centerButton{
+            width: 70%;
+          
+            display: inline-block;
+        }
+        .demo{
+              text-align: center;
+            
+            width: 40%;
+        }
+        .active{
+            color: green;
+            font-weight: 900;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="item" id="item1">
+            <img src="image/card1.jpeg" alt="">
+        </div>
+        <div class="item" id="item2">
+            <img src="image/card2.jpeg" alt="">
+        </div>
+        <div class="item" id="item3">
+            <img src="image/card3.jpeg" alt="">
+        </div>
+        <div class="item" id="item4">
+            <img src="image/card4.jpeg" alt="">
+        </div>
+        <div class="item" id="item5">
+            <img src="image/card5.jpeg" alt="">
+        </div>
+        <div class="allButton">
+            <div class="demo">
+            <div class="nextButton" id="prevButton">
+                <a class="prev" onclick="plusSlides(-1)">Previours</a>
+            </div>
+            </div>
+            <div style="text-align:center" class="centerButton">
+                <span class="dot" onclick="currentSlide(1)">1</span>
+                <span class="dot" onclick="currentSlide(2)">2</span>
+                <span class="dot" onclick="currentSlide(3)">3</span>
+                <span class="dot" onclick="currentSlide(4)">4</span>
+                <span class="dot" onclick="currentSlide(5)">5</span>
+                    
+            </div>
+              <div class="demo">
+              <div class="prevButton" id="nextButton">
+                <a class="next" onclick="plusSlides(1)">Next</a>   
+            </div>
+        
+    </div>
+
+    <script src="carsoul.js"></script>
+</body>
+</html>

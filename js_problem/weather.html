@@ -4,12 +4,31 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   
     <title>Weather</title>
+    <style>
+        .forecast{
+            background-color:rgb(213 225 231);
+            margin: 10px 10px;
+            padding-left: 10px;
+        }
+    </style>
 </head>
 <body>
+  <h1>All Details  of Weather</h1>
+    <h2 id = "location"></h2>
+    <button type="button" id= "firstDay">Today Weather</button>
+    <button type="button" id ="secondDay">Tommorow Weather</button>
+    <button type="button" id ="thirdDay">nextTommorow</button>
+   
     
-    <p id = "new"></p>
-    <button type="button" id= "firstDay">click</button>
+    
+    <div class="forecast" id="forecast">
+
+    </div>
+    
+    <!-- <script src="weather.js"></script> -->
+    <script src="weather1.js"></script>
 </body>
-<script src="weather.js"></script>
+
 </html>
