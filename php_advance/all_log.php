@@ -39,9 +39,9 @@ class Log{
          
     }
 }
-Log::$fileName = "text.txt";
- $obj = new Log();
-$obj->addErr("This is Error");
-$obj->addWarn("Hello This is Warning", "text.txt");
-$obj->addNotice("This is Notice");
+// Log::$fileName = "text.txt";
+//  $obj = new Log();
+// $obj->addErr("This is Error");
+// $obj->addWarn("Hello This is Warning", "text.txt");
+// $obj->addNotice("This is Notice of check page");
 ?>
