@@ -2,7 +2,7 @@
 namespace Container;
 class Log{
     public static $fileName;
-
+    // public static $fname;
     public function addWarn($logMsg, $fname = null){
         if($fname!=Null){
             $fname = $fname;
@@ -13,6 +13,7 @@ class Log{
         self::addData($logMsg, $fname, "| Warning |");
     }
     public function addErr($logMsg, $fname=NULL){
+        
         if($fname!=NULL){
             $fname = $fname;
         }
@@ -34,8 +35,8 @@ class Log{
     private static function addData($logMsg, $fname, $type)
     {
         $fopen  = fopen($fname, "a+");
-        $value = "\n\n";
-        $value.=fwrite($fopen, "\n{$type}======> {$logMsg} ");  
+    
+        fwrite($fopen, "\n{$type}======> {$logMsg} ");  
          
     }
 }

@@ -1,58 +1,19 @@
- This is my new file 
-| ERROR |======> This is Error 
-| Warning |======> hello this is my message 
-| Notice |======> This is Notice 
-| ERROR |======> This is Error 
-| Warning |======> hello this is my message 
-| Notice |======> This is Notice 
-| ERROR |======> This is Error 
-| Warning |======> hello this is my message 
-| Notice |======> This is Notice 
-| Warning |======> hello this is my message 
-| Notice |======> This is Notice 
-
-| Warning |======> hello this is my message 
-| Warning |======> hello this is my message 
-| Warning |======> hello this is my message 
-| ERROR |======> This is Error 
-| Warning |======> hello this is my message 
-| Notice |======> This is Notice 
-
-
-| ERROR |======> This is Error 
-
-
-| Warning |======> hello this is my message 
-
-
-| Notice |======> This is Notice 
-
-
-| ERROR |======> This is Error 
-
-
-| Warning |======> Hello This is Warning 
-
-
-| Notice |======> This is Notice 
-| ERROR |======> This is Error 
-| Warning |======> Hello This is Warning 
-| Notice |======> This is Notice 
-| ERROR |======> This is Error 
-| Warning |======> Hello This is Warning 
-| Notice |======> This is Notice 
-| ERROR |======> This is Error 
-| Warning |======> Hello This is Warning 
-| Notice |======> This is Notice 
-| ERROR |======> This is Error 
-| Warning |======> Hello This is Warning 
-| Notice |======> This is Notice 
-| ERROR |======> This is Error 
-| Warning |======> Hello This is Warning 
-| Notice |======> This is Notice 
-| Notice |======> This is Notice 
-| Notice |======> This is Notice 
-| Notice |======> This is Notice 
-| Notice |======> This is Notice 
-| Notice |======> This is Notice of check page 
-| Notice |======> This is Notice of check page123 
+ 
+| Warning |======> Undefined variable: name:/var/www/html/naveen/php_task1/php_advance/check.php errno  25 
+| Notice |======> include(ab.txt): failed to open stream: No such file or directory:/var/www/html/naveen/php_task1/php_advance/check.php errno  26 
+| Notice |======> include(): Failed opening 'ab.txt' for inclusion (include_path='.:/usr/share/php'):/var/www/html/naveen/php_task1/php_advance/check.php errno  26 
+| Warning |======> Undefined variable: s:/var/www/html/naveen/php_task1/php_advance/check.php errno  27 
+| Warning |======> Undefined variable: logFilePath:/var/www/html/naveen/php_task1/php_advance/check.php errno  21 
+| Notice |======> fopen(): Filename cannot be empty:/var/www/html/naveen/php_task1/php_advance/all_log.php errno  37 
+| Notice |======> fwrite() expects parameter 1 to be resource, bool given:/var/www/html/naveen/php_task1/php_advance/all_log.php errno  39 
+| Warning |======> Undefined variable: name:/var/www/html/naveen/php_task1/php_advance/check.php errno  24 
+| Notice |======> include(ab.txt): failed to open stream: No such file or directory:/var/www/html/naveen/php_task1/php_advance/check.php errno  25 
+| Notice |======> include(): Failed opening 'ab.txt' for inclusion (include_path='.:/usr/share/php'):/var/www/html/naveen/php_task1/php_advance/check.php errno  25 
+| Warning |======> Undefined variable: s:/var/www/html/naveen/php_task1/php_advance/check.php errno  26 
+| Warning |======> Undefined variable: logFilePath:/var/www/html/naveen/php_task1/php_advance/check.php errno  20 
+| Notice |======> fopen(): Filename cannot be empty:/var/www/html/naveen/php_task1/php_advance/all_log.php errno  37 
+| Notice |======> fwrite() expects parameter 1 to be resource, bool given:/var/www/html/naveen/php_task1/php_advance/all_log.php errno  39 
+| ERROR |======> ArgumentCountError: Too few arguments to function div(), 0 passed in /var/www/html/naveen/php_task1/php_advance/check.php on line 31 and exactly 1 expected in /var/www/html/naveen/php_task1/php_advance/check.php:28
+Stack trace:
+#0 /var/www/html/naveen/php_task1/php_advance/check.php(31): div()
+#1 {main} 
