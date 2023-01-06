@@ -1,10 +1,8 @@
 <?php
- namespace userDetails;
-//  use mysqli;
-require_once 'dbconnect.php';
+namespace userDetails\model;
+use userDetails\user;
 $obj = new user();
 $conn = $obj->connect();
-
 class Employee{
     public  $conn;
     function __construct($connect){

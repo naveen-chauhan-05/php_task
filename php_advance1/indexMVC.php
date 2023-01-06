@@ -1,9 +1,15 @@
 <?php
-namespace userDetails;
+use userDetails\model\Employee;
+use userDetails\user;
+
+error_reporting( E_ALL );
+ini_set('display_errors', '1');
 require_once 'model/dbconnect.php';
-require_once 'model/controler.php';
+ require_once 'model/dbOperation.php';
+
 $obj1 = new user();
 $conn = $obj1->connect(); 
+$obj = new Employee($conn);
     $action = "";
     if(!empty($_GET['action'])&& $_GET['action'])
  {
@@ -15,7 +21,7 @@ $conn = $obj1->connect();
             $name = $_POST['name'];
             $age = $_POST['age'];
             if($name!=""&& $age!=""){
-                $obj = new Employee($conn);
+                 
                 $insert = $obj->insert("employee_details", array('Emp_name'=>$name, 'emp_age'=>$age));
                 if($insert){
                     header("Location: indexMVC.php");
@@ -30,7 +36,7 @@ $conn = $obj1->connect();
     require_once 'viewer/form.php';  
         break;
     case 'edit':
-        $obj = new Employee($conn);
+        
         $id = "";
         if(!empty($_GET['id'])&& $_GET['id']){
             $id = $_GET['id'];
@@ -40,7 +46,7 @@ $conn = $obj1->connect();
             $name = $_POST['name'];
             $age = $_POST['age'];
             if($name!=""&& $age!=""){
-                $obj = new Employee($conn);
+               
                 $update =$obj->update1("employee_details", array('Emp_name'=>$name, 'emp_age'=>$age), array('EmpID' => $id));
                 if($update){
                     header("Location: indexMVC.php");
@@ -70,7 +76,6 @@ $conn = $obj1->connect();
             }
             break;
     default:
-    $obj = new Employee($conn);
     $show  = $obj->readData("employee_details");
     require_once 'viewer/show_data.php';
     break;
