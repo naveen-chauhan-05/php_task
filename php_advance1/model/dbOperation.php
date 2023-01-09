@@ -1,6 +1,9 @@
 <?php
 namespace userDetails\model;
-use userDetails\user;
+use App\user;
+error_reporting( E_ALL );
+ini_set('display_errors', '1');
+require_once '../config/dbconnect.php';
 $obj = new user();
 $conn = $obj->connect();
 class Employee{
@@ -9,7 +12,6 @@ class Employee{
  $this->conn = $connect;
   
     }
-
     function checkTable($table){
         
         $show = "SHOW TABLES";
@@ -193,10 +195,8 @@ class Employee{
 
          
 }
-
- 
- 
-// $delete = $obj1->getDelete("employee_details", array('Empid'=>array(3)));
+// $obj1 = new Employee($conn);
+// // $delete = $obj1->getDelete("employee_details", array('Empid'=>array(3)));
 // $array = $obj1->readData("employee_details");
 // print_r($array);
 //  $insert = $obj1->insert("employee_details", array('Emp_name'=>"Praveen", 'emp_age'=>'12'));

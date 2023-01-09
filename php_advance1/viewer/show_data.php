@@ -48,7 +48,7 @@
             </tr>
     <?php
    if(!empty($show)){
-    // print_r($show);
+    
     foreach ($show as $key => $value) {
          ?>
         <tr>

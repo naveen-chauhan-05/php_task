@@ -1,12 +1,10 @@
 <?php
 use userDetails\model\Employee;
-use userDetails\user;
-
+use App\user;
 error_reporting( E_ALL );
 ini_set('display_errors', '1');
-require_once 'model/dbconnect.php';
- require_once 'model/dbOperation.php';
-
+require_once '../config/dbconnect.php';
+ require_once '../model/dbOperation.php';
 $obj1 = new user();
 $conn = $obj1->connect(); 
 $obj = new Employee($conn);
@@ -33,7 +31,7 @@ $obj = new Employee($conn);
                 echo "Please All Field";
             }
             }
-    require_once 'viewer/form.php';  
+    require_once '../viewer/form.php';  
         break;
     case 'edit':
         
@@ -49,7 +47,7 @@ $obj = new Employee($conn);
                
                 $update =$obj->update1("employee_details", array('Emp_name'=>$name, 'emp_age'=>$age), array('EmpID' => $id));
                 if($update){
-                    header("Location: indexMVC.php");
+                    header("Location: ../controller/indexMVC.php");
                 }
                 else{
                     echo " Not inserted";
@@ -58,26 +56,24 @@ $obj = new Employee($conn);
                 echo "Please All Field";
             }
             }
-        require_once 'viewer/form.php';    
+        require_once '../viewer/form.php';    
         break;
         case 'delete':
             $obj = new Employee($conn);
             $id = "";
             if(!empty($_GET['id'])&& $_GET['id']){
                 $id = $_GET['id'];
-            }
-            
-            
+            } 
             $delete = $obj->getDelete("employee_details", array('Empid'=>array($id)));
             if($delete){
-                header("Location: indexMVC.php");
+                header("Location: ../model/indexMVC.php");
             }else{
                 echo "Not Delete";
             }
             break;
     default:
     $show  = $obj->readData("employee_details");
-    require_once 'viewer/show_data.php';
+    require_once '../viewer/show_data.php';
     break;
  }
     ?>
